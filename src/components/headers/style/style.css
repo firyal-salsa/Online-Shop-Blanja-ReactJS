@@ -1,0 +1,43 @@
+#header-navigation{
+    flex-direction: column;
+}
+
+.header-navbar{
+    width: 100%;
+    background: #FFFFFF;
+    box-shadow: 0px 6px 40px rgba(173, 173, 173, 0.25);
+    padding: 1vw;
+}
+
+#header-logo{
+    display: flex;
+}
+
+.header-logo-nav{
+    display:flex;
+    justify-content: center;
+}
+
+@media screen and (max-width: 521px) {
+    #header-navbar{
+        margin: 1% 10%;
+    }
+    #header-logo{
+        height: 3%;
+        width: 1%;
+    }
+
+}
+
+@media screen and (max-width: 1169px){
+    #header-logo{
+        margin: 2%;
+    }
+
+    #header-search{
+        margin: 1%;
+        margin-left: 2%;
+        width: 60%;
+        margin-top: 2%;
+    }
+}

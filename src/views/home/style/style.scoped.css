@@ -1,0 +1,12 @@
+  .home-body{
+    font-family: Metropolis;
+    position: relative;
+    margin: 0;
+    padding: 0;
+  }
+
+.cards{
+  display: flex;
+  flex-flow: row wrap;
+  position: relative;
+}

@@ -1,0 +1,11 @@
+#inputinventory-name{
+    width: 50vw;
+}
+
+.inputinventory-name-box{
+    padding: 10px;
+    height: 48px;
+    width: 400px;
+    left: 0;
+    top: 0;
+}

@@ -1,0 +1,21 @@
+.signup-body{
+    font-family: Metropolis;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+.signup-form{
+    margin: 0 auto;
+    padding-top: 60px;
+    width: 30%;
+ }
+
+ .signup-header{
+    align-items: center;
+}
+
+.link{
+    color: #DB3022;
+    text-decoration: none;
+}

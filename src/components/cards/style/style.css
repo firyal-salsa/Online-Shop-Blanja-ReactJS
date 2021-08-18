@@ -1,0 +1,10 @@
+#card-layout{
+    width: 12rem;
+    margin:10px;
+    text-decoration: none;
+    color: black;
+}
+
+.cursor{
+    cursor: pointer;
+}

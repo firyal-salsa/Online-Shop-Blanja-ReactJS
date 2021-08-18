@@ -1,0 +1,22 @@
+#header-navigation{
+    flex-direction: column;
+}
+
+.header-navbar{
+    width: 100%;
+    background: #FFFFFF;
+    box-shadow: 0px 6px 40px rgba(173, 173, 173, 0.25);
+}
+
+#header-navbar{
+    padding: 1vw;
+}
+
+#header-logo{
+    display: flex;
+}
+
+.header-logo-nav{
+    display:flex;
+    justify-content: center;
+}

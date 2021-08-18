@@ -1,0 +1,31 @@
+@font-face {
+    font-family: Metropolis;
+    src: url(metropolis.regular.otf);
+}
+
+.btn-outline-primary, .btn-outline-primary:hover, .btn-outline-primary:active, .btn-outline-primary:visited {
+    border: 1px solid #9B9B9B !important;
+}
+
+.login-body{
+    font-family: Metropolis;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+.custom-tab.active {
+    background: transparent !important;
+    color: white !important;
+    border-bottom: 2px solid yellow !important;
+    border-radius: 0px !important;
+}
+.login-form{
+    margin: 0 auto;
+    padding-top: 60px;
+    width: 30%;
+ }
+
+.login-header{
+    align-items: center;
+}

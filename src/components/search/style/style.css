@@ -1,0 +1,36 @@
+.search-input{
+    border: 1px solid #9B9B9B;
+    width: 40vw;
+    margin: 0;
+}
+
+.search-icon{
+    right:40px;
+    border:0
+}
+
+.search-filter{
+    margin-top: 1vw;
+}
+
+#search-border{
+    border: none;
+}
+
+
+
+
+@media screen and (max-width: 521px) {
+    .search-filter{
+        margin-left: 20%;
+        margin-top: 3vw;
+        padding: 0vw;
+        margin-bottom:0;
+    }
+    .search-icon{
+        margin-left: 41vw;
+        position: relative;
+        bottom: 8vw;
+    }
+
+}

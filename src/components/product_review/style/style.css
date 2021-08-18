@@ -1,0 +1,11 @@
+.product_review-number{
+    font-size: 70px;
+}
+
+.product_review-progress{
+    width: 7vw;
+}
+
+.result{
+    transform: scale(.9, 3);
+}

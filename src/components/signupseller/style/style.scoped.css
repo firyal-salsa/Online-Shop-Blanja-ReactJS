@@ -1,0 +1,28 @@
+.signup-input{
+    height: 4vw;
+    width: 45vw;
+    left: 0;
+    top: 0;
+}
+
+.signup{
+    line-height: 6vw;
+}
+
+.signup-text{
+    line-height: 18px;
+    font-weight: bolder;
+}
+
+.link{
+    color: #DB3022;
+    text-decoration: none;
+}
+
+.button-primary{
+    width: 45vw;
+    padding: 1vw;
+    border-radius: 50px;
+    background-color: #DB3022;
+    color: white;
+}

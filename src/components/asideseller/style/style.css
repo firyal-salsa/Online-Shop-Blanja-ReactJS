@@ -1,0 +1,21 @@
+.asideseller-width{
+    width: 7vw;
+}
+
+.bg-purple{
+  background-color: blueviolet;
+}
+
+.bg-orange{
+  background-color: salmon;
+}
+
+.active{
+  text-decoration: none;
+  color: black;
+  font-weight: bolder;
+}
+
+.asideseller{
+  background-color: blueviolet;
+}

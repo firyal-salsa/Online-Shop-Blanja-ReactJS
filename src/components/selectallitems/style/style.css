@@ -1,0 +1,19 @@
+#selectallitems-allitem{
+    width: 100vw;
+
+}
+
+.selectallitems-red{
+    color: #DB3022;
+    cursor: pointer;
+}
+
+#selectallitems-layout{
+    justify-content: space-between;
+    padding-left: 75rem;
+    padding-right: 75rem;
+}
+
+input[type="checkbox"] {
+    filter: hue-rotate(140deg);
+  }

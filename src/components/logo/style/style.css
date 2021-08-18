@@ -1,0 +1,14 @@
+.logo{
+    display:flex;
+    justify-content: center;
+}
+
+.logo-name{
+    top: 20px;
+    font-weight: bolder;
+    position:relative;
+    color: #DB3022;
+    font-size: larger;
+    font-size: 28px;
+    line-height: 20px;
+}
