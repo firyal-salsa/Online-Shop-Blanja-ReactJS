@@ -9,9 +9,8 @@ npm start
 ```
 
 ## BackEnd
-```
+
 https://github.com/firyal-salsa/CRUD-Rest-API-ExpressJS-Sequelize-PostgreSQL
-```
 
 ## Screenshoot
 
