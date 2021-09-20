@@ -8,18 +8,11 @@ Simple Online Shop Web App using ReactJS and ExpressJS.
   ## Customer
   1. Sign up
   2. Login
-  3. Reset password
-  4. Address
-     * Create
-     * Read
-     * Update
-     * Delete
   
   ## Seller
   1. Sign up
   2. Login
-  3. Reset password
-  4. Inventory
+  3. Inventory
      * Create
      * Read
      * Read - Sold out
@@ -31,10 +24,7 @@ Simple Online Shop Web App using ReactJS and ExpressJS.
   <summary>Category</summary>
   
   ## Category
-  1. Create
-  2. Read
-  3. Update
-  4. Delete
+  1. Read
 </details>
 
 <details>
@@ -48,6 +38,7 @@ Simple Online Shop Web App using ReactJS and ExpressJS.
   5. Sort by name
   6. Sort by newest
   7. Sort by price
+  8. Search
 </details>
 
 <details>
