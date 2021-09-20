@@ -58,6 +58,8 @@ Simple Online Shop Web App using ReactJS and ExpressJS.
 npm start
 ```
 
+## Demo Project
+https://bit.ly/blanja-olshop
 ## BackEnd
 
 https://github.com/firyal-salsa/OnlineShop-Blanja-ExpressJS-PostgreSQL
