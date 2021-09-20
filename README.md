@@ -60,7 +60,7 @@ npm start
 
 ## BackEnd
 
-https://github.com/firyal-salsa/CRUD-Rest-API-ExpressJS-Sequelize-PostgreSQL
+https://github.com/firyal-salsa/OnlineShop-Blanja-ExpressJS-PostgreSQL
 
 ## Screenshoot
 
