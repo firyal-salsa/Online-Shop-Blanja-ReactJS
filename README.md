@@ -1,6 +1,3 @@
-# Online Shop Blanja ReactJS 
-Simple Online Shop Web App using ReactJS and ExpressJS.
-
 ## Features
 <details>
   <summary>User</summary>
