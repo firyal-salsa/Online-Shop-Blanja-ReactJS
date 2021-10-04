@@ -60,6 +60,7 @@ npm start
 
 ## Demo Project
 https://bit.ly/blanja-olshop
+
 ## BackEnd
 
 https://github.com/firyal-salsa/OnlineShop-Blanja-ExpressJS-PostgreSQL
@@ -69,3 +70,5 @@ https://github.com/firyal-salsa/OnlineShop-Blanja-ExpressJS-PostgreSQL
 <img src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1631118488/samples/blanja/signup_lf9lj6.png" >
 <img src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1631834782/users/Untitled_design_g2eodz.png" >
 <img src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1631118489/samples/blanja/detailproduct_gt2nc7.png" >
+<img src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1633330764/3_zmcbte.png" >
+<img src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1633330764/4_hk09ao.png" >
