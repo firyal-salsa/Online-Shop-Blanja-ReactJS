@@ -1,0 +1,57 @@
+.layout{
+    margin-left: 5vw;
+    margin-right: 4vw;
+  }
+  
+  .bag-body{
+      font-family: Metropolis;
+      position: relative;
+      margin: 0;
+      padding: 0;
+    }
+  
+    #bag-title{
+        font-weight: bold;
+    }
+  
+    #section{
+      width: 100vw;
+  }
+  
+  .bag-summary{
+      float: right;
+  }
+  
+  .selectallitems-red{
+      color: #DB3022;
+      cursor: pointer;
+  }
+  
+  #selectallitems-layout{
+      justify-content: space-between;
+      padding-left: 75rem;
+      padding-right: 75rem;
+  }
+  
+  input[type="checkbox"] {
+      filter: hue-rotate(140deg);
+    }
+  
+    .listbag-image{
+      width: 8vw;
+      margin-right: 30vw;
+    
+    }
+    
+    .listbag-red{
+      color: #DB3022;
+    }
+    
+    .lh-5{
+      line-height: 5px;
+    }
+  
+    #shoppingsummary-red{
+      background-color: #DB3022;
+      color: white;
+  }

@@ -7,8 +7,12 @@ export class NavbarIcons extends Component {
     render() {
         return (
             <div id="icons" className="d-flex mx-5 ps-5">
-            <Link className="text-secondary m-3 p-2">
-                <i className="bi-bag" />
+            <Link to="/bag" className="text-secondary m-3 p-2">
+                <i className="bi-cart" />
+                <span className="badge rounded-pill bg-danger">
+                0
+                <span className="visually-hidden">bag</span>
+                </span>
             </Link>
             <Link className="text-secondary m-3 p-2">
                 <i className="bi-bell" />

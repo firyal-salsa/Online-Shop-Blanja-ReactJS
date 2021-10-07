@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Cards from "../../components/cards";
 import axios from "axios";
 import Logo from "../../components/logo";
-import Navbar from "../../components/navbar";
+import Navbar from "../../components/navbaricons";
 import CarouselNews from "../../components/carouselnews";
 import CarouselCategory from "../../components/carouselcategory";
 import { useHistory } from "react-router";

@@ -74,12 +74,24 @@ class Products extends Component {
     this.props.history.push(`/products/${produk_nama}`);
   };
 
-  handleRemove = (produk_id) => {
-    console.log(produk_id);
-    axios
-      .delete(`http://localhost:9000/product/${produk_id}`)
-      .then((res) => console.log(res));
-  };
+  handleRemove = (produk_id, token) => {
+    axios({
+        method: "DELETE",
+        url: `${process.env.REACT_APP_API}/product/rem/${produk_id}`,
+        headers: {
+            tokenauth: token,
+        },
+    })
+        .then((res) => {
+          const { token } = res.data.result[0] // datanya array
+            this.props.AuthSet(token)
+            this.getData(token)
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+}
+
 
   componentDidMount() {
     this.getProducts();
