@@ -4,6 +4,7 @@ import Headers from "../../components/headers";
 import ProductAbout from "../../components/product_about";
 import ProductReview from "../../components/product_review";
 import axios from "axios";
+import withAuth from "../../utils/withAuth"
 import { Link } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
@@ -74,13 +75,13 @@ class Products extends Component {
     this.props.history.push(`/products/${produk_nama}`);
   };
 
-  handleRemove = (produk_id, token) => {
+  handleRemove = (produk_id) => {
     axios({
         method: "DELETE",
         url: `${process.env.REACT_APP_API}/product/rem/${produk_id}`,
-        headers: {
-            tokenauth: token,
-        },
+        // headers: {
+        //     tokenauth: token,
+        // },
     })
         .then((res) => {
           const { token } = res.data.result[0] // datanya array
@@ -169,4 +170,4 @@ class Products extends Component {
   }
 }
 
-export default Products;
+export default withAuth(Products);
