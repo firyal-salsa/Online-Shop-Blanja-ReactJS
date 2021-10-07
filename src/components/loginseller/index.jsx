@@ -1,153 +1,163 @@
-import "./style/style.scoped.css"
-import React from "react"
-//import { useEffect, useState, useRef } from "react"
-// import { useDropzone } from "react-dropzone"
-import { Link } from "react-router-dom"
-// import { useHistory } from "react-router-dom"
-// import { useSelector } from "react-redux"
-// import Select from "react-select"
-// import axios from "axios"
-// import FormData from "form-data"
+import React from "react";
+import "./style/style.scoped.css";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import ActionsUsers from "../../redux/actions/users"
+import axios from "axios";
+import { withRouter } from "react-router-dom";
+import { Component } from "react";
 
 
-function Login() {
-    // const [imageFile, setImageFile] = useState(null)
-    // const [ImageSource, setImageSource] = useState(null)
-    // const [catgegori, setCatgegori] = useState([])
-    // const [product, setProduct] = useState({
-    //     name: "",
-    //     price: "",
-    //     categori: 0,
-    // })
+class LoginSL extends Component {
+  constructor(props) {
+    super(props)
 
-    // const history = useHistory()
-    // const labelRef = useRef(null)
-    // const { token } = useSelector((state) => state.users)
-    // const FromDatas = new FormData()
+    this.state = {
+        login: false,
+        role: "",
+        emailplace: "email",
+        passplace: "Password",
+        users: {
+            email: "",
+            password: "",
+            role: "seller",
+        },
+    }
 
-    // const { getRootProps, getInputProps, open, acceptedFiles } = useDropzone({
-    //     accept: "image/jpeg, image/png",
-    //     noKeyboard: true,
-    //     noClick: true,
-    // })
-
-    // const getCategori = () => {
-    //     axios({
-    //         method: "GET",
-    //         url: `${process.env.REACT_APP_API}/categori`,
-    //         headers: {
-    //             tokenauth: token,
-    //         },
-    //     })
-    //         .then((res) => {
-    //             const { result } = res.data
-    //             const newdata = []
-    //             result.forEach((val) => {
-    //                 newdata.push({ value: val.id, label: val.name_categori })
-    //             })
-    //             setCatgegori(newdata)
-    //         })
-    //         .catch((err) => {
-    //             console.log(err.response)
-    //         })
-    // }
-
-    // const Save = () => {
-    //     FromDatas.append("name", product.name)
-    //     FromDatas.append("price", product.price)
-    //     FromDatas.append("categori", product.categori)
-    //     FromDatas.append("image", imageFile)
-
-    //     axios({
-    //         method: "POST",
-    //         url: `${process.env.REACT_APP_API}/product`,
-    //         headers: {
-    //             "content-type": "multipart/form-data",
-    //             tokenauth: token,
-    //         },
-    //         data: FromDatas,
-    //     })
-    //         .then((res) => {
-    //             console.log(res.data)
-    //             history.push("/")
-    //         })
-    //         .catch((err) => {
-    //             console.log(err.response)
-    //         })
-    // }
-
-    // useEffect(() => {
-    //     getCategori()
-
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, [])
-
-    // useEffect(() => {
-    //     if (acceptedFiles.length > 0) {
-    //         acceptedFiles.map((data) => {
-    //             setImageSource(URL.createObjectURL(data))
-    //             setImageFile(data)
-    //             return true
-    //         })
-    //     }
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, [acceptedFiles])
-
-    // const Change = (el) => {
-    //     const newdata = { ...product }
-    //     newdata[el.target.name] = el.target.value
-    //     setProduct(newdata)
-    // }
-
-    // const customStyles = {
-    //     control: (styles, state) => ({
-    //         // none of react-select's styles are passed to <Control />
-    //         ...styles,
-    //         borderColor: state.isFocused ? "#545ca6" : "none",
-    //         "&:focus": {
-    //             borderColor: "#545ca6",
-    //         },
-    //     }),
-    // }
-
-    // const selectChange = (el) => {
-    //     const newdata = { ...product }
-    //     newdata.categori = el.value
-    //     setProduct(newdata)
-    // }
-
-    // const onfocus = (el) => {
-    //     el.target.classList.add("onfocus")
-    //     labelRef.current.classList.add("focus")
-    //     // el.target.nextSibling.classList.add("focus")
-    // }
-
-    // const notfocus = (el) => {
-    //     if (el.target.value === "") {
-    //         el.target.classList.remove("onfocus")
-    //         labelRef.current.classList.remove("focus")
-    //         // el.target.nextSibling.classList.remove("focus")
-    //     }
-    // }
-    
-    return (
-        <div className="d-flex flex-column d-flex justify-content-center">
-            <main className="loginsl text-center">
-                <input type="email" className="loginsl-input p-2" name="" placeholder="Email" />
-                <input type="password" class="loginsl-input p-2" name=""  placeholder="Password" />
-                <br />
-                <Link to='#'className="link text-center">Forgot password?</Link>
-                <br />
-                <Link to="/home"  className="btn buttonlogin-primary text-center">PRIMARY</Link>
-            </main>
-            <footer>
-                <br />
-                <p class="text-center">Don't have an account?<Link to="/signup" class="link"> Register</Link></p>
-            </footer>
-        </div>
-       
-    )
+    this.refWarUser = React.createRef(null)
+    this.refWarPass = React.createRef(null)
 }
 
 
-export default Login
+inputOnBlur = (event) => {
+    if (event.target.value === "") {
+        event.target.classList.remove("focus")
+    }
+}
+
+_HandleKeyBoard = (e) => {
+    if (e.key === "Enter") {
+        this.goLogin()
+    }
+}
+
+getData = (token) => {
+    axios({
+        method: "GET",
+        url: `${process.env.REACT_APP_API}/seller`,
+        headers: {
+            tokenauth: token,
+        },
+    })
+        .then((res) => {
+            this.props.UserSet(res)
+            this.props.history.push('/') // pindah halam
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+}
+
+goLogin = () => {
+    axios({
+        method: "POST",
+        url: `${process.env.REACT_APP_API}/auth`,
+        data: this.state.users,
+    })
+        .then((res) => {
+            const { token } = res.data.result[0] // datanya array
+            this.props.AuthSet(token)
+            this.getData(token)
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+}
+
+onChangeInput = (event) => {
+    event.preventDefault()
+    const data = { ...this.state.users }
+    data[event.target.name] = event.target.value
+    this.setState({ users: data })
+}
+    
+render() {
+    return (
+        <div className="d-flex flex-column d-flex justify-content-center">
+            <main className="loginsl text-center">
+                <div className="inpform" onKeyPress={this._HandleKeyBoard}>
+                    <input
+                    type="email"
+                    placeholder="Email"
+                    onChange={this.onChangeInput}
+                    className="loginsl-input p-2"
+                    name="email"
+                    autoComplete="off"
+                    onBlur={this.inputOnBlur}
+                    />
+                    <span
+                    data-placeholder={this.state.emailplace}
+                    className="nor"
+                    ref={this.refWarEmail}
+                    />
+                </div>
+                <div className="inpform" onKeyPress={this._HandleKeyBoard}>
+                    <input
+                    type="password"
+                    placeholder="Password"
+                    onChange={this.onChangeInput}
+                    className="loginsl-input p-2"
+                    name="password"
+                    autoComplete="off"
+                    onBlur={this.inputOnBlur}
+                    />
+                    <span
+                    data-placeholder={this.state.passplace}
+                    className="nor"
+                    ref={this.refWarPass}
+                    />
+                </div>
+                <Link to="#" className="link">
+            Forgot password?
+          </Link>
+          <br />
+          <Link onClick={this.goLogin} defaultValue="Login" className="btn buttonlogin-primary text-center">
+            Login
+          </Link>
+        </main>
+        <footer>
+          <br />
+          <p class="text-center">
+            Don't have an account?
+            <Link to="/signup" class="link">
+              {" "}
+              Register
+            </Link>
+          </p>
+        </footer>
+      </div>
+    );
+  }
+}
+
+
+const mapStateToProps = (state) => {
+  return {
+      users: state.users,
+  }
+}
+
+// method untuk dispacth atau manggil action redux
+// untuk menambah props komponen kita
+const mapDispatchToProps = (dispacth) => {
+  return {
+      AuthSet: bindActionCreators(ActionsUsers.AuthSet, dispacth),
+      UserSet: bindActionCreators(ActionsUsers.UserSet, dispacth),
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(LoginSL))
