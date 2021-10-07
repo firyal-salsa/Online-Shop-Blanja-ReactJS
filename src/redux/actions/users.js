@@ -1,4 +1,4 @@
-class customers {
+class Users {
     AuthSet = (token) => {
         return {
             type: "SET_AUTH",
@@ -12,12 +12,12 @@ class customers {
         }
     }
 
-    customerSet = (data) => {
+    UserSet = (data) => {
         return {
-            type: "SET_CUSTOMERS",
+            type: "SET_USERS",
             payload: data,
         }
     }
 }
 
-export default new customers()
+export default new Users()

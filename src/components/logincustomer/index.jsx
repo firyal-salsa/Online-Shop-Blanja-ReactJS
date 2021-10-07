@@ -3,97 +3,94 @@ import "./style/style.scoped.css";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import ActionCustomer from "../../redux/actions/customers";
+import ActionsUsers from "../../redux/actions/users"
 import axios from "axios";
+import { withRouter } from "react-router-dom";
 import { Component } from "react";
+
 
 class Login extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
-      login: false,
-      emailplace: "email",
-      passplace: "password",
-      customers: {
-        email: "",
-        password: "",
-      },
-    };
+        login: false,
+        role: "",
+        emailplace: "email",
+        passplace: "Password",
+        users: {
+            email: "",
+            password: "",
+            role: "customer",
+        },
+    }
 
-    this.refWarEmail = React.createRef(null);
-    this.refWarPass = React.createRef(null);
-  }
+    this.refWarUser = React.createRef(null)
+    this.refWarPass = React.createRef(null)
+}
 
-  inputOnFocus = (event) => {
-    if (event.target.email === "email") {
-      this.setState({ emailplace: "email" });
-      this.refWarEmail.current.classList.remove("err");
+inputOnFocus = (event) => {
+    if (event.target.name === "email") {
+        this.setState({ emailplace: "email" })
+        this.refWarUser.current.classList.remove("err")
     } else {
-      this.setState({ passplace: "password" });
-      this.refWarPass.current.classList.remove("err");
+        this.setState({ passplace: "Password" })
+        this.refWarPass.current.classList.remove("err")
     }
-    event.target.classList.add("focus");
-  };
+    event.target.classList.add("focus")
+}
 
-  inputOnBlur = (event) => {
+inputOnBlur = (event) => {
     if (event.target.value === "") {
-      event.target.classList.remove("focus");
+        event.target.classList.remove("focus")
     }
-  };
+}
 
-  _HandleKeyBoard = (e) => {
+_HandleKeyBoard = (e) => {
     if (e.key === "Enter") {
-      this.goLogin();
+        this.goLogin()
     }
-  };
+}
 
-  getData = (token) => {
+getData = (token) => {
     axios({
-      method: "GET",
-      url: `${process.env.REACT_APP_API}/customer/${this.state.customers.email}`,
-      headers: {
-        tokenauth: token,
-      },
+        method: "GET",
+        url: `${process.env.REACT_APP_API}/customer`,
+        headers: {
+            tokenauth: token,
+        },
     })
-      .then((res) => {
-        this.props.EmailSet(res.data.result[0]);
-        this.props.history.push("/");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+        .then((res) => {
+            this.props.UserSet(res)
+            this.props.history.push('/') // pindah halam
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+}
 
-  goLogin = () => {
+goLogin = () => {
     axios({
         method: "POST",
         url: `${process.env.REACT_APP_API}/authcs`,
-        data: this.state.customers,
+        data: this.state.users,
     })
         .then((res) => {
-            const { token } = res.data.result[0]
+            const { token } = res.data.result[0] // datanya array
             this.props.AuthSet(token)
             this.getData(token)
         })
         .catch((error) => {
-            const { msg } = error.response.data.result[0]
-            if (msg === "Password Salah") {
-                this.refWarPass.current.classList.add("err")
-                this.setState({ passplace: "Password Salah" })
-            } else if (msg === "username tidak terdaftar") {
-                this.refWarEmail.current.classList.add("err")
-                this.setState({ emailplace: "Email belum terdaftar" })
-            }
+            console.log(error)
         })
 }
 
-  onChangeInput = (event) => {
-    event.preventDefault();
-    const data = { ...this.state.customers };
-    data[event.target.email] = event.target.value;
-    this.setState({ customers: data });
-  };
+onChangeInput = (event) => {
+    event.preventDefault()
+    const data = { ...this.state.users }
+    data[event.target.name] = event.target.value
+    this.setState({ users: data })
+}
 
   render() {
     return (
@@ -136,7 +133,7 @@ class Login extends Component {
           </Link>
           <br />
           <Link onClick={this.goLogin} defaultValue="Login" className="btn buttonlogin-primary text-center">
-            PRIMARY
+            Login
           </Link>
         </main>
         <footer>
@@ -154,21 +151,23 @@ class Login extends Component {
   }
 }
 
+
 const mapStateToProps = (state) => {
-    return {
-        customers: state.customers,
-    }
+  return {
+      users: state.users,
+  }
 }
 
 // method untuk dispacth atau manggil action redux
+// untuk menambah props komponen kita
 const mapDispatchToProps = (dispacth) => {
-    return {
-        AuthSet: bindActionCreators(ActionCustomer.AuthSet, dispacth),
-        CustomerSet: bindActionCreators(ActionCustomer.customerSet, dispacth),
-    }
+  return {
+      AuthSet: bindActionCreators(ActionsUsers.AuthSet, dispacth),
+      UserSet: bindActionCreators(ActionsUsers.UserSet, dispacth),
+  }
 }
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Login)
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(Login))

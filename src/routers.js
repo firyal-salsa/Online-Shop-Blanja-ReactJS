@@ -16,7 +16,7 @@ function Routers() {
         <Route path="/signup" component={SignUp}></Route>
         <Route path="/login" component={Login}></Route>
         <Route path="/bag" component={Bag}></Route>
-            <Route path="/" component={Home}></Route>
+        <Route path="/" component={Home}></Route>
         </Switch>
         </BrowserRouter>
     )

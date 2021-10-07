@@ -2,10 +2,10 @@ import { createStore, combineReducers } from "redux"
 import { persistReducer } from "redux-persist"
 import storage from "redux-persist/lib/storage"
 import autoMergeL2 from "redux-persist/lib/stateReconciler/autoMergeLevel2"
-import customers from "./reducers/customers"
+import users from "./reducers/users"
 
 const reducer = combineReducers({
-    customers,
+    users,
 })
 
 const persistConfig = {
