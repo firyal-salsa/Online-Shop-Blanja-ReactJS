@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import "./style/style.scoped.css";
 import Headers from "../../components/headers";
 import ProductAbout from "../../components/product_about";
-import ProductReview from "../../components/product_review";
 import axios from "axios";
-import withAuth from "../../utils/withAuth"
 import { Link } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
@@ -59,7 +57,7 @@ class Products extends Component {
   getAllProducts = () => {
     axios({
       method: "GET",
-      url: "http://localhost:9000/product/produk_harga",
+      url: `${process.env.REACT_APP_API}/product/produk_harga`,
     })
       .then((res) => {
         const { result } = res.data;
@@ -76,23 +74,10 @@ class Products extends Component {
   };
 
   handleRemove = (produk_id) => {
-    axios({
-        method: "DELETE",
-        url: `${process.env.REACT_APP_API}/product/rem/${produk_id}`,
-        // headers: {
-        //     tokenauth: token,
-        // },
-    })
-        .then((res) => {
-          const { token } = res.data.result[0] // datanya array
-            this.props.AuthSet(token)
-            this.getData(token)
-        })
-        .catch((error) => {
-            console.log(error)
-        })
-}
-
+    axios
+      .delete(`${process.env.REACT_APP_API}/product/rem/${produk_id}`)
+      .then((res) => console.log(res));
+  };
 
   componentDidMount() {
     this.getProducts();
@@ -123,7 +108,7 @@ class Products extends Component {
                 produk_toko={this.state.prods.produk_toko}
                 remove={this.handleRemove}
               />
-
+              <br />
               <section className="productinformation">
                 <h3 className="fw-bold">Informasi Produk</h3>
                 <h5 className="fw-bold">Condition</h5>
@@ -145,7 +130,92 @@ class Products extends Component {
                 </blockquote>
               </section>
             </div>
-            <ProductReview />
+            <section className="productreview">
+            <div className="">
+              <h5 className="fw-bold">Product Review</h5>
+              <div className="mt-4">
+                <div className="d-flex">
+                  <div className="margin">
+                    <div className="d-flex align-items-end">
+                      <h1 className="rating pb-1">5.0</h1>
+                      <p className="text-secondary">/10</p>
+                    </div>
+                    <div className="row">
+                      <div className="col text-center">
+                        <i className="bi-star-fill text-warning" />
+                        <i className="bi-star-fill text-warning" />
+                        <i className="bi-star-fill text-warning" />
+                        <i className="bi-star-fill text-warning" />
+                        <i className="bi-star-fill text-warning" />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col lh-1">
+                    <p className="bi-star-fill text-warning mb-1">
+                      5{" "}
+                      <progress
+                        className="product_review-progress"
+                        id="file"
+                        value="100"
+                        max="100"
+                      >
+                        {" "}
+                      </progress>{" "}
+                      4{" "}
+                    </p>
+                    <p className="bi-star-fill text-warning mb-1">
+                      4{" "}
+                      <progress
+                        className="product_review-progress"
+                        id="file"
+                        value="0"
+                        max="100"
+                      >
+                        {" "}
+                      </progress>{" "}
+                      0
+                    </p>
+                    <p className="bi-star-fill text-warning mb-1">
+                      3{" "}
+                      <progress
+                        className="product_review-progress"
+                        id="file"
+                        value="0"
+                        max="100"
+                      >
+                        {" "}
+                      </progress>{" "}
+                      0
+                    </p>
+                    <p className="bi-star-fill text-warning mb-1">
+                      2{" "}
+                      <progress
+                        className="product_review-progress"
+                        id="file"
+                        value="0"
+                        max="100"
+                      >
+                        {" "}
+                      </progress>{" "}
+                      0
+                    </p>
+                    <p className="bi-star-fill text-warning mb-1">
+                      1{" "}
+                      <progress
+                        className="product_review-progress"
+                        id="file"
+                        value="0"
+                        max="100"
+                      >
+                        {" "}
+                      </progress>{" "}
+                      0
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
             <hr />
             <section>
               <h3 className="fw-bold">You can also like this</h3>
@@ -170,4 +240,4 @@ class Products extends Component {
   }
 }
 
-export default withAuth(Products);
+export default Products;

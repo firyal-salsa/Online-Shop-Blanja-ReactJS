@@ -1,29 +1,14 @@
 .product-about{
-    margin-left: 35vw;
-    margin-top: -25%;
+    display: flex;
 }
 
-.product-about-width{
-    width: 30%;
+.product-photo{
+    width: 410px;
+    height: 410px;
+    margin-right: 6vw;
 }
 
-.product-about-width-15{
-    width: 15%;
-}
-
-.product-about-width-63{
-    width: 63%;
-}
-
-.blue{
-    background-color: #0275d8;
-}
-
-#product-about-red{
-    background-color: #DB3022;
-    color: white;
-}
-
-.layout-about{
-    padding-top: 9vh;
+.btn-buy-now{
+    padding-left: 10vw;
+    padding-right: 10vw;
 }

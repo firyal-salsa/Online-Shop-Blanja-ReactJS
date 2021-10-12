@@ -1,0 +1,22 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  li {
+    display: inline;
+    padding-right: 60px;
+    border-bottom: solid 2px grey;
+  }
+
+  .text-nav{
+    text-decoration: none;
+    color: black;
+  }
+
+  .text-nav:active{
+    text-decoration: none;
+    border-bottom: solid 3px red;
+    color: red;
+  }

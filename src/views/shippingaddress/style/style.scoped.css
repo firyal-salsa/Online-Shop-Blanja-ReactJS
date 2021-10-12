@@ -1,0 +1,12 @@
+.btn-add{
+    border: dashed 2px grey;
+    padding: 30px;
+    font-size: 27px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.layout-address{
+    width: 700px;
+    padding: 20px;
+}

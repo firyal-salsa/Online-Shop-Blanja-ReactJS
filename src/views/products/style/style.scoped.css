@@ -5,11 +5,27 @@
     padding: 0;
   }
 
-  .product-image{
-    top: 70vw;
-  }
+.product-image{
+  top: 70vw;
+}
 
-  .link{
-    text-decoration: none;
-    color: black;
-  }
+.link{
+  text-decoration: none;
+  color: black;
+}
+
+.product_review-number{
+  font-size: 70px;
+}
+
+.product_review-progress{
+  width: 7vw;
+}
+
+.rating{
+  transform: scale(.9, 3);
+}
+
+.margin{
+  margin-top: 2.5vw;
+}

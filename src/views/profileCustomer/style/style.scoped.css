@@ -1,0 +1,19 @@
+.margin-save{
+    margin-left: 9vw;
+}
+
+.p-8{
+    padding-left:10vw;
+}
+
+.photo{
+    width: 100px;
+    height: 100px;
+}
+
+.verticalLine {
+    margin-left: 5vw;
+    margin-right: 5vw;
+    border-left: solid 1px gray;
+    height: 15vw;
+  }
