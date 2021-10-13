@@ -10,7 +10,7 @@ export default function OrderCustomer() {
             <Header />
             <div className="d-flex">
             <Aside />
-                <div className="card p-3 m-5 mx-4">
+                <div className="card p-3 px-5 m-5 mx-4">
                     <h3>Order</h3>
                     <br />
                     <ul>

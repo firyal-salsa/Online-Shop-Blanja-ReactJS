@@ -38,7 +38,7 @@ function NavbarIcons() {
                     </div>
             </Link>
             <span className="mt-3 pl-1 pointer" onClick={toggleOpen}>
-                <img className="rounded-circle navbaricons-img" src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1627481146/products/d9e3334f-fd72-4548-8d11-ed68909905fbbeard_r2yamy.png" alt=""/>
+                <img className="rounded-circle navbaricons-img" src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1634127974/firyal_piwyhf.jpg" alt=""/>
                 <div className={`dropdown-menu ${dropdown ? 'show' : ''}`} aria-labelledby="dropdownMenuButton">
                     <Link to="/profileseller" className="dropdown-item">
                         Edit Profile              

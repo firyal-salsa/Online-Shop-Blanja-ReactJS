@@ -7,9 +7,9 @@ export class AsideSeller extends Component {
         return (
             <aside className="layout">
                 <div className="d-flex p-5">
-                    <img className="rounded-circle asideseller-width" src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1627481146/products/d9e3334f-fd72-4548-8d11-ed68909905fbbeard_r2yamy.png" alt="" />
+                    <img className="rounded-circle asideseller-width" src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1634130450/chiyobayi_plxami.jpg" alt="" />
                     <div className="pt-4" id="asideseller-name">
-                    <h5 className="fw-bold">Johannes Mikael</h5>
+                    <h5 className="fw-bold">Baby Chiyo</h5>
                     <i class="bi bi-pencil-fill">Ubah profile</i>
                     </div>
                 </div>
@@ -88,7 +88,7 @@ export class AsideSeller extends Component {
                       <div className="accordion-body">
                       <Link className="list" to="/orderseller">My Order</Link>
                       <br />
-                      <Link className="list" to="/ordercancel">Order Cancel</Link>
+                      <Link className="list" to="/orderseller">Order Cancel</Link>
                       </div>
                     </div>
                   </div>

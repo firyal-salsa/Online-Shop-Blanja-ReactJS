@@ -13,3 +13,7 @@
     border-left: solid 1px gray;
     height: 15vw;
   }
+
+  .padding{
+      padding-right:50px;
+  }
