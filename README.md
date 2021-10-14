@@ -66,9 +66,21 @@
 
 
 ## Features
+
+Customer
+~~~
+
+1. Home
+    * A nested numbered list
+    * Which is numbered
+2. Product
+
+~~~
+
 <h5>Customer</5>
-1. Home (Sort by name,newest,price and search products)
-2. Product 
+
+1.  (Sort by name,newest,price and search products)
+2.  
 3. Bag (access bag page, select products, and price total of products)
 4. Shipping Address access address page and add address
 5. Edit Profile 
