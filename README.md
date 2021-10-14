@@ -64,7 +64,7 @@ npm start
 ```
 
 ## Demo Project
-https://bit.ly/blanja-olshop
+https://olshop-blanja.netlify.app/
 
 ## BackEnd
 
