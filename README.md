@@ -51,6 +51,10 @@
   4. Delete
 </details>
 
+## Build with
+
+<img src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1634191162/tech%20stack/react_xh8uvp.svg" width="20px" height="10px">
+
 ## Executing program
 
 * Install depedencies
