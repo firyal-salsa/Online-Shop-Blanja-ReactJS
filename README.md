@@ -1,4 +1,4 @@
-<img src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1634231375/Blanja/Blanja_wx6dy8.png" style="float:left;height:400px;width:500px" alt="logo">
+<img src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1634232141/Blanja/Blanja_gtchsp.png" style="float:left;height:400px;width:500px" alt="logo">
 
   Blanja is an online shop web application. To find out information about [screenshoot](#screenshoot), [features](#features), [build](#build), [executing](#executing), [demo](#demo), [backend](#backend), [dockerhub](#dockerhub) please see below.
 
