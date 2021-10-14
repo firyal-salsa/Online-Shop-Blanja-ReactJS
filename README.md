@@ -1,3 +1,6 @@
+# Blanja
+  Blanja is an online shop web application. To find out information about shopping features (please click below), demo projects, executing programs, backend links, application screenshots, please see below.
+
 ## Features
 <details>
   <summary>User</summary>
