@@ -67,25 +67,23 @@
 
 ## Features
 
-Customer
-~~~
-
+<h6>Customer</h6>
 1. Home
     - Sort by name
-    - Which is numbered
+    - Sort by newest
+    - Sort by price
+    - Search products
 2. Product
-
-~~~
-
-<h5>Customer</5>
-
-1.  (,newest,price and search products)
-2.  
-3. Bag (access bag page, select products, and price total of products)
-4. Shipping Address access address page and add address
+3. Bag
+    - Access bag page
+    - Select products
+4. Shipping address
+    - Access address page
+    - Add address
 5. Edit Profile 
 6. Logout
-<h5>Seller</h5>
+
+<h6>Seller</h6>
 1. Login
 2. Add product
 3. Edit profile
