@@ -68,25 +68,22 @@
 ## Features
 Users can pick as customer or seller. To find out details about each feature, please click the name of the customer or seller.
 <details>
-  <summary>User</summary>
-  
-  ## Customer
-  1. Login
-  2. Home
-     * Sort by name
-     * Sort by newest
-     * Sort by price
-     * Search
-  3. Bag
-     * Access bag page
-     * Select products
-     * Price total of products
-  4. Shipping Address
-     * access address page
-     * add address
-  5. Edit profile
-  
-  ## Seller
+  <summary>Customer</summary>
+            1. Login
+            2. Home
+               * Sort by name
+               * Sort by newest
+               * Sort by price
+               * Search
+            3. Bag
+               * Access bag page
+               * Select products
+               * Price total of products
+            4. Shipping Address
+               * access address page
+               * add address
+            5. Edit profile
+  <summary>Seller</summary>
   1. Login
   2. Add product
   3. Edit profile
