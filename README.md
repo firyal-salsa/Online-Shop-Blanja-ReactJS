@@ -1,4 +1,4 @@
-<img src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1634232141/Blanja/Blanja_gtchsp.png" style="align:center;height:150px;width:200px" alt="logo">
+<img src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1634232141/Blanja/Blanja_gtchsp.png" class="center" style="height:150px;width:200px" alt="logo">
 
   Blanja is an online shop web application. To find out information about [screenshoot](#screenshoot), [features](#features), [build](#build), [executing](#executing), [demo](#demo), [backend](#backend), [dockerhub](#dockerhub) please see below.
 
@@ -66,26 +66,17 @@
 
 
 ## Features
-   <h5>Customer</5>
-            1. Login
-            2. Home
-               * Sort by name
-               * Sort by newest
-               * Sort by price
-               * Search
-            3. Bag
-               * Access bag page
-               * Select products
-               * Price total of products
-            4. Shipping Address
-               * access address page
-               * add address
-            5. Edit profile
-            
-     <h5>Seller</h5>
-            1. Login
-            2. Add product
-            3. Edit profile
+<h5>Customer</5>
+1. Home (Sort by name,newest,price and search products)
+2. Product 
+3. Bag (access bag page, select products, and price total of products)
+4. Shipping Address access address page and add address
+5. Edit Profile 
+6. Logout
+<h5>Seller</h5>
+1. Login
+2. Add product
+3. Edit profile
 
 
 ## Build
