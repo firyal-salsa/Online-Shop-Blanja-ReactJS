@@ -66,27 +66,9 @@
 
 
 ## Features
-
-<h6>Customer</h6>
-1. Home
-    - Sort by name
-    - Sort by newest
-    - Sort by price
-    - Search products
-2. Product
-3. Bag
-    - Access bag page
-    - Select products
-4. Shipping address
-    - Access address page
-    - Add address
-5. Edit Profile 
-6. Logout
-
-<h6>Seller</h6>
-1. Login
-2. Add product
-3. Edit profile
+Users can pick as a customer or seller. Customer can access home page (sort by name, sort by newest, sort by price, search products)
+product, bag (access bag page and select products), shipping address (access address page and dd address), edit Profile, logout.
+Seller can add products, edit profile, and logout.
 
 
 ## Build
