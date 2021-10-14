@@ -53,7 +53,12 @@
 
 ## Executing program
 
-* run the server
+* Install depedencies
+```
+npm install
+```
+
+* Run the server
 ```
 npm start
 ```
