@@ -64,8 +64,49 @@ https://github.com/firyal-salsa/OnlineShop-Blanja-ExpressJS-PostgreSQL
 
 ## Screenshoot
 
-<img src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1631118488/samples/blanja/signup_lf9lj6.png" >
-<img src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1631834782/users/Untitled_design_g2eodz.png" >
-<img src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1631118489/samples/blanja/detailproduct_gt2nc7.png" >
-<img src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1633330764/3_zmcbte.png" >
-<img src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1633330764/4_hk09ao.png" >
+<table>
+  <tr>
+    <th>
+      <img src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1634186998/Blanja/1_mjesyn.png" width="300px" alt="Arkademylogo.svg" />
+    </th>
+    <th>
+      <img src="https://user-images.githubusercontent.com/55304067/133918703-4bdedf54-05d1-40ce-b1e9-c5d258334bc2.png" width="300px" alt="Arkademylogo.svg" />
+    </th>
+    <th>
+      <img src="https://user-images.githubusercontent.com/55304067/134828735-4de67ff2-56d8-4c22-9ab3-26bd14019d9b.png" width="300px" alt="Arkademylogo.svg" />
+    </th>
+  </tr>
+ <tr>
+    <th>
+      <img src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1634187003/Blanja/2_wbhniy.png" width="300px" alt="Arkademylogo.svg" />
+    </th>
+    <th>
+      <img src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1634187001/Blanja/5_tiqnzy.png" width="300px" alt="Arkademylogo.svg" />
+    </th>
+    <th> 
+      <img src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1634187001/Blanja/3_kkow7r.png" width="300px" alt="Arkademylogo.svg" />
+   </th>
+  </tr>
+  <tr>
+    <th>
+      <img src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1634187001/Blanja/4_usdj4m.png" width="300px" alt="Arkademylogo.svg" />
+    </th>
+    <th>
+      <img src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1634187001/Blanja/6_salas0.png" width="300px" alt="Arkademylogo.svg" />
+    </th>
+    <th>
+      <img src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1634187000/Blanja/7_fu2kcr.png" width="300px" alt="Arkademylogo.svg" />
+    </th>
+  </tr>
+  <tr>
+    <th>
+      <img src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1634187001/Blanja/8_lzudbi.png" width="300px" alt="Arkademylogo.svg" />
+    </th>
+    <th>
+      <img src="" width="300px" alt="Arkademylogo.svg" />
+    </th>
+    <th>
+      <img src="" width="300px" alt="Arkademylogo.svg" />
+    </th>
+  </tr>
+</table>
