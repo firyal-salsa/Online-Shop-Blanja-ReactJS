@@ -66,9 +66,7 @@
 
 
 ## Features
-Users can pick as customer or seller. To find out details about each feature, please click the name of the customer or seller.
-<details>
-  <summary>Customer</summary>
+   <h5>Customer</5>
             1. Login
             2. Home
                * Sort by name
@@ -83,11 +81,11 @@ Users can pick as customer or seller. To find out details about each feature, pl
                * access address page
                * add address
             5. Edit profile
-  <summary>Seller</summary>
-  1. Login
-  2. Add product
-  3. Edit profile
-</details>
+            
+     <h5>Seller</h5>
+            1. Login
+            2. Add product
+            3. Edit profile
 
 
 ## Build
