@@ -71,6 +71,7 @@ https://github.com/firyal-salsa/OnlineShop-Blanja-ExpressJS-PostgreSQL
   <tr>
     <th>
       <img src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1634186998/Blanja/1_mjesyn.png" width="300px" alt="Arkademylogo.svg" />
+      <p>Login<p/>
     </th>
     <th>
       <img src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1634189996/Blanja/10_dwy8bh.png" width="300px" alt="Arkademylogo.svg" />
@@ -110,9 +111,6 @@ https://github.com/firyal-salsa/OnlineShop-Blanja-ExpressJS-PostgreSQL
     </th>
     <th>
       <img src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1634190001/Blanja/12_sgcqyj.png" width="300px" alt="Arkademylogo.svg" />
-    </th>
-    <th>
-      <img src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1634190000/Blanja/13_s9czjr.png" width="300px" alt="Arkademylogo.svg" />
     </th>
   </tr>
 </table>
