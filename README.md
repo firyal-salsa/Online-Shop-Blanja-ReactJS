@@ -9,8 +9,9 @@ Table of contents
 =================
 
 <!--ts-->
-   * [Build With](#build with)
+   <button style="text-decoration:none;background-color:FFFFB3">[Build With](#build with)</button>
    * [Features](#features)
+   * [Docker Hub](#dockerhub)
 <!--te-->
 
 ## Features
@@ -43,7 +44,7 @@ Table of contents
   <summary>Product</summary>
   
   ## Product
-  1. Create
+  1. Access home page
   2. Read
   3. Update
   4. Delete
@@ -57,15 +58,14 @@ Table of contents
   <summary>Bag</summary>
   
   ## Bag
-  1. Create
-  2. Read
-  3. Update
-  4. Delete
+  1. Access bag page
+  2. Select products
+  3. Price total of products
 </details>
 
 
 
-Build with
+Build
 ============
 
 <div class="d-flex">
@@ -79,7 +79,7 @@ Build with
 <img src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1634225440/tech%20stack/jenkins_xhlzk0.svg" width="50px" height="50px">
 </div>
 
-Executing program
+Executing
 ============
 
 * Install depedencies
@@ -92,7 +92,7 @@ npm install
 npm start
 ```
 
-Demo Project
+Demo
 ============
 https://olshop-blanja.netlify.app/
 
@@ -100,7 +100,7 @@ BackEnd
 ============
 https://github.com/firyal-salsa/OnlineShop-Blanja-ExpressJS-PostgreSQL
 
-Docker Hub
+DockerHub
 ============
 ```
 docker pull firsabila/frontend:prod
