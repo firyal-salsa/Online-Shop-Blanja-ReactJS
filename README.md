@@ -1,18 +1,10 @@
-
+https://res.cloudinary.com/dvehyvk3d/image/upload/v1634231375/Blanja/Blanja_wx6dy8.png
 
 
 
 # Blanja
-  Blanja is an online shop web application. To find out information about shopping features (please click below), demo projects, executing programs, backend links, application screenshots, please see below.
+  Blanja is an online shop web application. To find out information about [features](#features), [build](#build), please see below.
 
-Table of contents
-=================
-
-<!--ts-->
-   <button style="text-decoration:none;background-color:FFFFB3">[Build With](#build with)</button>
-   * [Features](#features)
-   * [Docker Hub](#dockerhub)
-<!--te-->
 
 ## Features
 <details>
