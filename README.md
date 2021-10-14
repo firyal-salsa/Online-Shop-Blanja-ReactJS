@@ -66,58 +66,34 @@
 
 
 ## Features
+Users can pick as customer or seller. To find out details about each feature, please click the name of the customer or seller.
 <details>
   <summary>User</summary>
   
   ## Customer
-  1. Sign up
-  2. Login
+  1. Login
+  2. Home
+     * Sort by name
+     * Sort by newest
+     * Sort by price
+     * Search
+  3. Bag
+     * Access bag page
+     * Select products
+     * Price total of products
+  4. Shipping Address
+     * access address page
+     * add address
+  5. Edit profile
   
   ## Seller
-  1. Sign up
-  2. Login
-  3. Inventory
-     * Create
-     * Read
-     * Read - Sold out
-     * Update
-     * Delete
-</details>
-
-<details>
-  <summary>Category</summary>
-  
-  ## Category
-  1. Read
-</details>
-
-<details>
-  <summary>Product</summary>
-  
-  ## Product
-  1. Access home page
-  2. Read
-  3. Update
-  4. Delete
-  5. Sort by name
-  6. Sort by newest
-  7. Sort by price
-  8. Search
-</details>
-
-<details>
-  <summary>Bag</summary>
-  
-  ## Bag
-  1. Access bag page
-  2. Select products
-  3. Price total of products
+  1. Login
+  2. Add product
+  3. Edit profile
 </details>
 
 
-
-Build
-============
+## Build
 
 <div class="d-flex">
 <img src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1634191162/tech%20stack/react_xh8uvp.svg" width="50px" height="50px">
@@ -130,8 +106,7 @@ Build
 <img src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1634225440/tech%20stack/jenkins_xhlzk0.svg" width="50px" height="50px">
 </div>
 
-Executing
-============
+## Executing
 
 * Install depedencies
 ```
@@ -143,16 +118,13 @@ npm install
 npm start
 ```
 
-Demo
-============
+## Demo
 https://olshop-blanja.netlify.app/
 
-BackEnd
-============
+## BackEnd
 https://github.com/firyal-salsa/OnlineShop-Blanja-ExpressJS-PostgreSQL
 
-DockerHub
-============
+## DockerHub
 ```
 docker pull firsabila/frontend:prod
 ```
