@@ -1,5 +1,6 @@
+
 <p align="center"><img src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1634232141/Blanja/Blanja_gtchsp.png" width="200px" alt="Arkademylogo.svg" /></p>
-<p><img src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1634282728/arkademy_ufgxux.png" width="200px" alt="Arkademylogo.svg" /></p>
+<p align="center"><img src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1634282728/arkademy_ufgxux.png" width="200px" alt="Arkademylogo.svg" /></p>
 
   Blanja is an online shop web application. To find out information about [screenshoot](#screenshoot), [features](#features), [build](#build), [executing](#executing), [demo](#demo), [backend](#backend), [dockerhub](#dockerhub) please see below.
 
