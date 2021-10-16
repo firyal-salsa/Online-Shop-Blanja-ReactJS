@@ -29,17 +29,6 @@ class Login extends Component {
     this.refWarPass = React.createRef(null)
 }
 
-inputOnFocus = (event) => {
-    if (event.target.name === "email") {
-        this.setState({ emailplace: "email" })
-        this.refWarUser.current.classList.remove("err")
-    } else {
-        this.setState({ passplace: "Password" })
-        this.refWarPass.current.classList.remove("err")
-    }
-    event.target.classList.add("focus")
-}
-
 inputOnBlur = (event) => {
     if (event.target.value === "") {
         event.target.classList.remove("focus")
@@ -103,7 +92,6 @@ onChangeInput = (event) => {
               className="logincs-input p-2"
               name="email"
               autoComplete="off"
-              onFocus={this.inputOnFocus}
               onBlur={this.inputOnBlur}
             />
             <span
@@ -119,7 +107,6 @@ onChangeInput = (event) => {
               className="logincs-input p-2"
               name="password"
               autoComplete="off"
-              onFocus={this.inputOnFocus}
               onBlur={this.inputOnBlur}
             />
             <span

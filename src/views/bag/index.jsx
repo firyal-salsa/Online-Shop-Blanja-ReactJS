@@ -58,7 +58,7 @@ class Bag extends Component {
                   />
                   <span className="d-flex align-items-center mx-1 py-3 w-50 flex-column lh-5">
                     <p id="product-name" className="card-text w-100 pt-5">
-                    zippy playsuit disney pooh
+                    Zippy Playsuit Disney Pooh
                     </p>
                     <p
                       id="store-name"
@@ -87,7 +87,7 @@ class Bag extends Component {
                   />
                   <span className="d-flex align-items-center mx-1 py-3 w-50 flex-column lh-5">
                     <p id="product-name" className="card-text w-100 pt-5">
-                    sky pants jogger chinos
+                    Sky Pants Jogger Chinos
                     </p>
                     <p
                       id="store-name"
