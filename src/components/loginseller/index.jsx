@@ -15,7 +15,7 @@ class LoginSL extends Component {
 
     this.state = {
         login: false,
-        role: "",
+        role: "seller",
         emailplace: "email",
         passplace: "Password",
         users: {

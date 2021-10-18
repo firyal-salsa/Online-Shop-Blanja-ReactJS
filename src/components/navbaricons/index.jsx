@@ -16,13 +16,13 @@ function NavbarIcons() {
 
     return (
         <div id="icons" className="d-flex mx-5 ps-5">
-            {/* <Link to="/bag" className="text-secondary m-3 p-2">
+            <Link to="/bag" className="text-secondary m-3 p-2">
                 <i className="bi-cart" />
                 <span className="badge rounded-pill bg-danger">
-                2
+                0
                 <span className="visually-hidden">bag</span>
                 </span>
-            </Link> */}
+            </Link>
             <Link className="text-secondary m-3 p-2" onClick={toggleOpenNotif}>
                 <i className="bi-bell" />
                     <div className={`dropdown-menu ${dropdownNotif ? 'show' : ''}`} aria-labelledby="dropdownMenuButton">
@@ -40,7 +40,7 @@ function NavbarIcons() {
             <span className="mt-3 pl-1 pointer" onClick={toggleOpen}>
                 <img className="rounded-circle navbaricons-img" src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1634130450/chiyobayi_plxami.jpg" alt=""/>
                 <div className={`dropdown-menu ${dropdown ? 'show' : ''}`} aria-labelledby="dropdownMenuButton">
-                    <Link to="/profilecustomer" className="dropdown-item">
+                    <Link to="/profileseller" className="dropdown-item">
                         Edit Profile              
                     </Link>
                     <Link to="/login" className="dropdown-item">

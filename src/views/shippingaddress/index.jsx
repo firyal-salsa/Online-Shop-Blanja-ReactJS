@@ -1,9 +1,61 @@
-import React from 'react'
+import React, { useState} from 'react'
 import Header from "../../components/headeruser"
 import Aside from "../../components/asidecustomer"
 import "./style/style.scoped.css"
+import withAuth from "../../utils/withAuth"
+import FormData from 'form-data'
+import { useHistory } from "react-router-dom"
+import { useSelector } from "react-redux"
+import axios from "axios";
 
-export default function profileSeller() {
+function ShippingAddress() {
+    const [addresses, setAddresses] = useState({
+        address_tempat:'',
+        address_nama:'',
+        address_telepon:'',
+        address_alamat:'',
+        address_kodepos:'',
+        address_kota:'',
+    })
+
+    const history = useHistory()
+    const { token } = useSelector((state) => state.users)
+    const Form = new FormData()
+
+    const Save = () => {
+        Form.append("address_tempat", addresses.address_tempat)
+        Form.append("address_nama", addresses.address_nama)
+        Form.append("address_telepon", addresses.address_telepon)
+        Form.append("address_alamat", addresses.address_alamat)
+        Form.append("address_kodepos", addresses.address_kodepos)
+        Form.append("address_kota", addresses.address_kota)
+        Form.append("address_email", addresses.address_email)
+
+        axios({
+            method: "POST",
+            url: `${process.env.REACT_APP_API}/customer/address`,
+            headers: {
+                "content-type": "multipart/form-data",
+                tokenauth: token,
+            },
+            data: Form,
+        })
+            .then((res) => {
+                console.log(res.data)
+                history.push("/shippingaddress")
+            })
+            .catch((err) => {
+                console.log(err.response)
+            })
+    }
+
+    const Change = (el) => {
+        const newdata = { ...addresses }
+        newdata[el.target.name] = el.target.value
+        setAddresses(newdata)
+    }
+
+    
     return (
         <div>
             <Header />
@@ -49,25 +101,24 @@ export default function profileSeller() {
                                 />
                                 </div>
                                 <div className="modal-body">
-                                    <form>
                                         <div className="mb-3">
                                             <label className="form-label">
                                             Save address as (ex : home address, office address)
                                             </label>
-                                            <input type="text" className="form-control" id="" placeholder="Rumah"/>
+                                            <input type="text" className="form-control" name="address_tempat" onChange={Change} placeholder="Rumah"/>
                                         </div>
                                         <div className="d-flex">
                                         <div className="mb-3 pe-3">
                                             <label className="form-label">
                                             Recipient's name
                                             </label>
-                                            <input type="text" className="form-control" id=""/>
+                                            <input type="text" name="address_nama" onChange={Change} className="form-control" id=""/>
                                         </div>
                                         <div className="mb-3">
                                             <label className="form-label">
                                             Recipient's telephone number
                                             </label>
-                                            <input type="number" className="form-control" id=""/>
+                                            <input type="number" name="address_telepon" onChange={Change} className="form-control" id=""/>
                                         </div>
                                         </div>
                                         <div className="d-flex">
@@ -75,20 +126,20 @@ export default function profileSeller() {
                                             <label className="form-label">
                                             Address
                                             </label>
-                                            <input type="text" className="form-control" id=""/>
+                                            <input type="text" name="address_alamat" onChange={Change} className="form-control" id=""/>
                                         </div>
                                         <div className="mb-3">
                                             <label className="form-label">
                                             Postal code
                                             </label>
-                                            <input type="number" className="form-control" id=""/>
+                                            <input type="number" name="address_kodepos" onChange={Change} className="form-control" id=""/>
                                         </div>
                                         </div>
                                         <div className="mb-3">
                                             <label className="form-label">
                                             City or Subdistrict
                                             </label>
-                                            <input type="number" className="form-control w-50" id=""/>
+                                            <input type="number" name="address_kota" onChange={Change} className="form-control w-50" id=""/>
                                         </div>
                                         <div className="mb-3 form-check">
                                             <input type="checkbox" className="form-check-input" id="exampleCheck1" />
@@ -96,7 +147,6 @@ export default function profileSeller() {
                                             Make the primary address
                                             </label>
                                         </div>
-                                    </form>
                                 </div>
                                 <div className="modal-footer">
                                 <button
@@ -106,7 +156,7 @@ export default function profileSeller() {
                                 >
                                     Cancel
                                 </button>
-                                <button type="button" className="btn btn-primary">
+                                <button type="button" onClick={Save} className="btn btn-primary">
                                     Save changes
                                 </button>
                                 </div>
@@ -119,3 +169,5 @@ export default function profileSeller() {
         </div>
     )
 }
+
+export default withAuth(ShippingAddress)

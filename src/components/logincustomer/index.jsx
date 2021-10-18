@@ -15,7 +15,7 @@ class Login extends Component {
 
     this.state = {
         login: false,
-        role: "",
+        role: "customer",
         emailplace: "email",
         passplace: "Password",
         users: {
@@ -68,6 +68,7 @@ goLogin = () => {
             const { token } = res.data.result[0] // datanya array
             this.props.AuthSet(token)
             this.getData(token)
+            console.log(token)
         })
         .catch((error) => {
             console.log(error)
