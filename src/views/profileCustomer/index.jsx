@@ -7,23 +7,24 @@ import Header from "../../components/headeruser"
 import Aside from "../../components/asidecustomer"
 import "./style/style.scoped.css"
 import axios from "axios";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import DatePicker from 'react-date-picker';
 
 function ProfileCustomer() {
     const [customer, setCustomer] = useState({
         name:'',
         email:'',
-        phone_number:'',
+        phone_number:0,
         gender:'',
         foto:'',
-        birthday:'',
+        birthday:0,
     })
     const [imageFile, setImageFile] = useState(null)
     const [ImageSource, setImageSource] = useState(null)
+    const [value, onChange] = useState(new Date());
 
     const history = useHistory()
     const { token } = useSelector((state) => state.users)
+    const { email } = useSelector((state) => state.users)
     const Form = new FormData()
 
     const { getRootProps, getInputProps, open, acceptedFiles } = useDropzone({
@@ -37,12 +38,12 @@ function ProfileCustomer() {
         Form.append("email", customer.email)
         Form.append("phone_number", customer.phone_number)
         Form.append("gender", customer.gender)
-        Form.append("foto", imageFile)
         Form.append("birthday", customer.birthday)
+        Form.append("foto", imageFile)
 
         axios({
             method: "PUT",
-            url: `${process.env.REACT_APP_API}/customer`,
+            url: `${process.env.REACT_APP_API}/customer/manage/${email}`,
             headers: {
                 "content-type": "multipart/form-data",
                 tokenauth: token,
@@ -50,14 +51,26 @@ function ProfileCustomer() {
             data: Form,
         })
             .then((res) => {
+                console.log(customer.birthday)
                 console.log(res.data)
                 history.push("/")
             })
             .catch((err) => {
+                console.log(customer.birthday)
                 console.log(err.response)
             })
     }
 
+    useEffect(() => {
+        if (acceptedFiles.length > 0) {
+            acceptedFiles.map((data) => {
+                setImageSource(URL.createObjectURL(data))
+                setImageFile(data)
+                return true
+            })
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [acceptedFiles])
 
     const Change = (el) => {
         const newdata = { ...customer }
@@ -121,7 +134,7 @@ function ProfileCustomer() {
                             <div className="d-flex justify-content-between pb-3">
                                  <label className="form-label">Birth </label>
                                 &nbsp;
-                                <input type="date" className="ps-5 ms-4 form-control" name="" id="" />
+                                <DatePicker format="yyy-MM-dd" onChange={onChange} value={value} className="ps-5 ms-4 form-control" />
                             </div>
                             <br />
                             <button type="button" onClick={Update} className="btn btn-primary rounded-pill margin-save">Save</button>
@@ -129,10 +142,10 @@ function ProfileCustomer() {
                         <div className="verticalLine" {...getRootProps()}>
                         <input {...getInputProps()} />
                                 {ImageSource === null ? null : (
-                            <img className="rounded-circle photo ms-5"  src={ImageSource} alt="" />
+                            <img className="rounded-circle photo ms-5" name="foto" src={ImageSource} alt="" />
                             )}
                             <br />
-                            <button type="file" onClick={open} className="btn btn-outline-secondary rounded-pill ms-5 mt-2">Select Image</button>
+                            <button type="button" onClick={open} className="btn btn-outline-secondary rounded-pill ms-5 mt-2">Select Image</button>
                         </div>
                     </form>                    
                 </div>
