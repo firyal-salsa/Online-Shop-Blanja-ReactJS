@@ -13,7 +13,7 @@ function ProfileSeller() {
     const [seller, setseller] = useState({
         name: '',
         email: '',
-        phone_number: '',
+        phone_number: 0,
         store_description: '',
         password:'',
         foto: '',
@@ -53,7 +53,7 @@ function ProfileSeller() {
         })
             .then((res) => {
                 console.log(res.data)
-                history.push("/")
+                history.push("/profileseller")
             })
             .catch((err) => {
                 console.log(err.response)
@@ -91,23 +91,23 @@ function ProfileSeller() {
                         <div>
                             <div className="d-flex justify-content-between pb-3">
                                 <label className="form-label padding">Name</label>
-                                <input type="text" onChange={Change} className="form-control" name="" id="" />
+                                <input type="text" name="name" onChange={Change} className="form-control" id="" />
                             </div>
                             <div className="d-flex justify-content-between pb-3">
                                 <label className="form-label padding">Email</label>
-                                <input type="email" onChange={Change} className="form-control" name="" id="" />
+                                <input type="email" name="email" onChange={Change} className="form-control" id="" />
                             </div>
                             <div className="d-flex justify-content-between pb-3">
                                 <label className="form-label padding">Phone</label>
-                                <input type="number" onChange={Change} className="form-control" name="" id="" />
+                                <input type="number" name="phone_number" onChange={Change} className="form-control" id="" />
                             </div>
                             <div className="d-flex justify-content-between pb-3">
                                 <label className="form-label padding">Password</label>
-                                <input type="password" onChange={Change} className="form-control" name="" id="" />
+                                <input type="password" name="password" onChange={Change} className="form-control"  id="" />
                             </div>
                             <div className="d-flex justify-content-between pb-3">
                                 <label className="form-label padding">Description</label>
-                                <textarea className="form-control" onChange={Change} name="" id="" cols="24" rows="5"></textarea>
+                                <textarea className="form-control" name="store_description" onChange={Change} id="" cols="24" rows="5"></textarea>
                             </div>
                             <br />
                             <button type="button" onClick={Update} className="btn btn-primary rounded-pill margin-save">Save</button>
@@ -115,7 +115,7 @@ function ProfileSeller() {
                         <div className="verticalLine" {...getRootProps()}>
                         <input {...getInputProps()} />
                                 {ImageSource === null ? null : (
-                            <img className="rounded-circle photo ms-5" src={ImageSource} alt="" />
+                            <img className="rounded-circle photo ms-5" name="foto" src={ImageSource} alt="" />
                             )}
                             <br />
                             <button type="button" onClick={open} className="btn btn-outline-secondary rounded-pill ms-5 mt-2">Select Image</button>

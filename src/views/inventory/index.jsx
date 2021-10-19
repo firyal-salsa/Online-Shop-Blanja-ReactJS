@@ -1,7 +1,7 @@
 import "./style/style.scoped.css"
 import React, { useEffect, useState} from "react"
 import { useDropzone } from "react-dropzone"
-import { Link, useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import { useSelector } from "react-redux"
 import withAuth from "../../utils/withAuth"
 import Header from "../../components/headeruser"

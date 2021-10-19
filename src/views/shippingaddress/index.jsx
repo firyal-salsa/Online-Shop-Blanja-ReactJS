@@ -12,9 +12,9 @@ function ShippingAddress() {
     const [address, setAddresses] = useState({
         address_tempat:'',
         address_nama:'',
-        address_telepon:'',
+        address_telepon:0,
         address_alamat:'',
-        address_kodepos:'',
+        address_kodepos:0,
         address_kota:'',
         address_email:'',
     })
