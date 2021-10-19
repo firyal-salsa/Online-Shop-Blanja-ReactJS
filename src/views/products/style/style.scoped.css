@@ -29,3 +29,18 @@
 .margin{
   margin-top: 2.5vw;
 }
+
+.product-about{
+  display: flex;
+}
+
+.product-photo{
+  width: 410px;
+  height: 410px;
+  margin-right: 6vw;
+}
+
+.btn-buy-now{
+  padding-left: 10vw;
+  padding-right: 10vw;
+}

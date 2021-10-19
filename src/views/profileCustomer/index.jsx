@@ -24,7 +24,6 @@ function ProfileCustomer() {
 
     const history = useHistory()
     const { token } = useSelector((state) => state.users)
-    const { email } = useSelector((state) => state.users)
     const Form = new FormData()
 
     const { getRootProps, getInputProps, open, acceptedFiles } = useDropzone({
@@ -43,7 +42,7 @@ function ProfileCustomer() {
 
         axios({
             method: "PUT",
-            url: `${process.env.REACT_APP_API}/customer/manage/${email}`,
+            url: `${process.env.REACT_APP_API}/customer/manage/${customer.email}`,
             headers: {
                 "content-type": "multipart/form-data",
                 tokenauth: token,
@@ -51,12 +50,10 @@ function ProfileCustomer() {
             data: Form,
         })
             .then((res) => {
-                console.log(customer.birthday)
                 console.log(res.data)
-                history.push("/")
+                history.push("/profilecustomer")
             })
             .catch((err) => {
-                console.log(customer.birthday)
                 console.log(err.response)
             })
     }
@@ -92,16 +89,16 @@ function ProfileCustomer() {
                         <div>
                             <div className="d-flex justify-content-between pb-3">
                                 <label className="form-label pe-5">Name</label>
-                                <input type="text" onChange={Change} className="form-control" name="" id="" />
+                                <input type="text" onChange={Change} className="form-control" name="name" id="" />
                             </div>
                             <div className="d-flex justify-content-between pb-3">
                                 <label className="form-label pe-5" >Email</label>
                                 &nbsp;
-                                <input type="email" onChange={Change} className="form-control pe-5" name="" id="" />
+                                <input type="email" onChange={Change} className="form-control pe-5" name="email" id="" />
                             </div>
                             <div className="d-flex justify-content-between pb-3">
                                 <label className="form-label pe-5">Phone</label>
-                                <input type="number" onChange={Change} className="form-control" name="" id="" />
+                                <input type="number" onChange={Change} className="form-control" name="phone_number" id="" />
                             </div>
                             <div className="d-flex justify-content-between pb-3">
                                  <label className="form-label">Gender </label>
@@ -110,9 +107,9 @@ function ProfileCustomer() {
                                     <input
                                     className="form-check-input"
                                     type="radio"
-                                    name="Laki-laki"
+                                    name="gender"
+                                    value="Laki-laki"
                                     id="inlineRadio1"
-                                    defaultValue="option1"
                                     />
                                     <label className="form-check-label" htmlFor="inlineRadio1">
                                     Laki-laki
@@ -122,9 +119,9 @@ function ProfileCustomer() {
                                     <input
                                     className="form-check-input"
                                     type="radio"
-                                    name="Perempuan"
+                                    name="gender"
+                                    value="Perempuan"
                                     id="inlineRadio2"
-                                    defaultValue="option2"
                                     />
                                     <label className="form-check-label" htmlFor="inlineRadio2">
                                     Perempuan
@@ -134,7 +131,7 @@ function ProfileCustomer() {
                             <div className="d-flex justify-content-between pb-3">
                                  <label className="form-label">Birth </label>
                                 &nbsp;
-                                <DatePicker format="yyy-MM-dd" onChange={onChange} value={value} className="ps-5 ms-4 form-control" />
+                                <DatePicker format="yyy-MM-dd" name="birthday" onChange={onChange} value={value} className="ps-5 ms-4 form-control" />
                             </div>
                             <br />
                             <button type="button" onClick={Update} className="btn btn-primary rounded-pill margin-save">Save</button>

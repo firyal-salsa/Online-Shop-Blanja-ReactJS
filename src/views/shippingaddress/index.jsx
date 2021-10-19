@@ -101,6 +101,7 @@ function ShippingAddress() {
                                     aria-label="Close"
                                 />
                                 </div>
+                                <form>
                                 <div className="modal-body">
                                         <div className="mb-3">
                                             <label className="form-label">
@@ -163,6 +164,7 @@ function ShippingAddress() {
                                     Save changes
                                 </button>
                                 </div>
+                                </form>
                             </div>
                             </div>
                         </div>

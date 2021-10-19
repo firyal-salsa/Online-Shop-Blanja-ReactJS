@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./style/style.scoped.css";
 import Logo from "../../components/logo";
 import Navbar from "../../components/navbaricons";
-import ProductAbout from "../../components/product_about";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
@@ -178,19 +177,33 @@ class Products extends Component {
             <i className="bi bi-caret-right" />
             <Link className="link"> Category</Link>{" "}
             <i className="bi bi-caret-right" />
-            <Link className="link">T-Shirt</Link>
+            <Link className="link">{this.state.prods.categories.kategori_nama}</Link>
           </span>
           <main className="container">
             <div>
-              <ProductAbout
-                produk_id={this.state.prods.produk_id}
-                produk_nama={this.state.prods.produk_nama}
-                produk_harga={this.state.prods.produk_harga}
-                produk_foto={this.state.prods.produk_foto}
-                produk_terjual={this.state.prods.produk_terjual}
-                produk_toko={this.state.prods.produk_toko}
-                remove={this.handleRemove}
-              />
+            <section className="product-about">
+                    <div className="">
+                        <img className="product-photo" src={this.state.prods.produk_foto} alt="" />
+                    </div>
+                    <div className="test">
+                        <h3 className="fw-bold">{this.state.prods.produk_nama}</h3>
+                        <p className="text-secondary">{this.state.prods.produk_toko}</p>
+                        <i className="bi-star-fill text-warning" />
+                        <i className="bi-star-fill text-warning" />
+                        <i className="bi-star-fill text-warning" />
+                        <i className="bi-star-fill text-warning" />
+                        <i className="bi-star-fill text-warning" />
+                        <i>{this.state.prods.produk_terjual}</i>
+                        
+                        <p className="mt-4">Price</p>
+                        <h3 className="fw-bold">Rp. {this.state.prods.produk_harga}</h3>
+                        <div className="pt-5">
+                        <button type="button" className="btn btn-outline-secondary py-2 px-5 me-2 rounded-pill">Chat</button>
+                        <button type="button" className="btn btn-outline-secondary py-2 px-5 me-2 rounded-pill">Add Bag</button>
+                        <button type="button" className="btn btn-primary py-2 btn-buy-now rounded-pill">Buy Now</button>
+                        </div>
+                    </div>
+                </section>
               <br />
               <section className="productinformation">
                 <h3 className="fw-bold">Informasi Produk</h3>

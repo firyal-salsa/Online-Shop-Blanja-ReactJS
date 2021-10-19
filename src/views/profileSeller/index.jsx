@@ -24,7 +24,6 @@ function ProfileSeller() {
 
     const history = useHistory()
     const { token } = useSelector((state) => state.users)
-    const { email } = useSelector((state) => state.users)
     const Form = new FormData()
 
     const { getRootProps, getInputProps, open, acceptedFiles } = useDropzone({
@@ -44,7 +43,7 @@ function ProfileSeller() {
 
         axios({
             method: "PUT",
-            url: `${process.env.REACT_APP_API}/seller/manage/${email}`,
+            url: `${process.env.REACT_APP_API}/seller/manage/${seller.email}`,
             headers: {
                 "content-type": "multipart/form-data",
                 tokenauth: token,
