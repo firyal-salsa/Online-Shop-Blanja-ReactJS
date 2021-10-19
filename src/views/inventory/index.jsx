@@ -8,7 +8,7 @@ import Header from "../../components/headeruser"
 import Aside from "../../components/asideseller"
 import FormData from 'form-data'
 import Select from 'react-select'
-import axios from "axios";
+import axios from "axios"
 
 
 function Inventory() {
@@ -17,7 +17,7 @@ function Inventory() {
         produk_toko: '',
         produk_harga: '',
         produk_terjual: '',
-        produk_kategori_id: 0,
+        categories: 0,
     })
     const [imageFile, setImageFile] = useState(null)
     const [ImageSource, setImageSource] = useState(null)
@@ -54,12 +54,13 @@ function Inventory() {
             })
     }
 
+
     const Save = () => {
         Form.append("produk_nama", product.produk_nama)
         Form.append("produk_toko", product.produk_toko)
         Form.append("produk_harga", product.produk_harga)
         Form.append("produk_terjual", product.produk_terjual)
-        Form.append("produk_kategori_id", product.produk_kategori_id)
+        Form.append("categories", product.categories)
         Form.append("produk_foto", imageFile)
 
         axios({
@@ -76,7 +77,7 @@ function Inventory() {
                 history.push("/")
             })
             .catch((err) => {
-                console.log(err.response)
+                console.log(err)
             })
     }
 
@@ -105,7 +106,7 @@ function Inventory() {
 
     const selectChange = (el) => {
         const newdata = { ...product }
-        newdata.categori = el.value
+        newdata.categories = el.value
         setProduct(newdata)
     }
 
@@ -116,48 +117,46 @@ function Inventory() {
                         <div>
                             <Aside />
                         </div>
-                            <main className="card me-4 mt-5 p-3 mb-4">
+                            <main className="card w-75 me-4 mt-5 p-3 mb-4">
                                 <h3>Inventory</h3>
                                 <hr />
-                                <div >
-                                    <label htmlFor="Nama Produk" className="p-3">
-                                        <h5>Nama produk</h5>
-                                        <input type="text" name="produk_nama" onChange={Change} className="inputinventory-name inputinventory-name-box" id="inputinventory-name" placeholder="Nama produk. contoh : pensil"/>
-                                    </label>
-                                    <label htmlFor="Nama Toko" className="p-3">
-                                        <h5>Toko</h5>
-                                        <input type="text" className="inputinventory-name inputinventory-name-box" name="produk_toko" onChange={Change} id="inputinventory-name" placeholder="Nama toko. contoh : Toko Abadi"/>
-                                    </label>
-                                    <label htmlFor="Harga" className="p-3">
-                                        <h5>Harga</h5>
-                                        <input type="number" min="0" step="500" className="inputinventory-name inputinventory-name-box" name="produk_harga" onChange={Change} id="inputinventory-name"/>
-                                    </label>
-                                    <label htmlFor="Stok terjual" className="p-3">
-                                        <h5>Stok terjual</h5>
-                                        <input type="number" min="0" name="produk_terjual" onChange={Change} className="inputinventory-name inputinventory-name-box" id="inputinventory-name"/>
-                                    </label>
-                                    <br />
-                                    <label htmlFor="" className="p-3">
-                                    <h5>Kategori</h5>
-                                    <Select
-                                    name="produk_kategori_id"
-                                    options={categories}
-                                    onChange={selectChange}
-                                />
-                                    </label>
+                                <div>
+                                    <div className="mb-3">
+                                    <label class="form-label">Nama Produk</label>
+                                        <input type="text" name="produk_nama" onChange={Change} className="form-control" placeholder="Nama produk. contoh : pensil"/>
+                                    </div>
+                                    <div className="mb-3">
+                                    <label class="form-label">Nama Toko</label>
+                                        <input type="text" name="produk_toko" onChange={Change} className="form-control" placeholder="Nama produk. contoh : pensil"/>
+                                    </div>
+                                    <div className="mb-3">
+                                    <label class="form-label">Harga</label>
+                                        <input type="number" min="0" step="500" name="produk_harga" onChange={Change} className="form-control"/>
+                                    </div>
+                                    <div className="mb-3">
+                                    <label class="form-label">Stok Terjual</label>
+                                        <input type="number" min="0" name="produk_terjual" onChange={Change} className="form-control"/>
+                                    </div>
+                                    <div className="mb-3">
+                                    <label class="form-label">Kategori Produk</label>
+                                        <Select
+                                        className="w-100"
+                                        options={categories}
+                                        onChange={selectChange}
+                                        />
+                                    </div>
                                     <br />
                                     <label htmlFor="formFile" className="form-label">
                                         <h5>Foto</h5>
                                     </label>
-                                    <div {...getRootProps()} className="pics">
-                                <input {...getInputProps()} />
-                                {ImageSource === null ? null : (
-                                    <img src={ImageSource} alt="p2" className="r r-2x img-full" />
-                                )}
-                                <Link to="#/" className="chooice" onClick={open}>
-                                    <span>Select Image</span>
-                                </Link>
-                            </div>
+                                    <br />
+                                        <button className="btn btn-outline-danger" onClick={open}>Pilih Foto</button>
+                                        <div {...getRootProps()}>
+                                        <input {...getInputProps()} />
+                                        {ImageSource === null ? null : (
+                                            <img src={ImageSource} alt="p2" className="r r-2x img-full image" />
+                                        )}
+                                        </div>
                                     <br />
                                     <button  onClick={Save} className="btn btn-danger w-25 float-end">
                                         Jual

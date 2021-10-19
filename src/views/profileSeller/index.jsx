@@ -1,9 +1,82 @@
-import React from 'react'
+import React, { useEffect, useState} from 'react'
 import Header from "../../components/headeruser"
 import Aside from "../../components/asideseller"
 import "./style/style.scoped.css"
+import axios from "axios";
+import FormData from 'form-data'
+import { useDropzone } from "react-dropzone"
+import { useHistory } from "react-router-dom"
+import { useSelector } from "react-redux"
+import withAuth from "../../utils/withAuth"
 
-export default function profileSeller() {
+function ProfileSeller() {
+    const [seller, setseller] = useState({
+        name: '',
+        email: '',
+        phone_number: '',
+        store_description: '',
+        password:'',
+        foto: '',
+    })
+    const [imageFile, setImageFile] = useState(null)
+    const [ImageSource, setImageSource] = useState(null)
+    
+
+    const history = useHistory()
+    const { token } = useSelector((state) => state.users)
+    const { email } = useSelector((state) => state.users)
+    const Form = new FormData()
+
+    const { getRootProps, getInputProps, open, acceptedFiles } = useDropzone({
+        accept: "image/jpeg, image/png",
+        noKeyboard: true,
+        noClick: true,
+    })
+
+
+    const Update = () => {
+        Form.append("name", seller.name)
+        Form.append("email", seller.email)
+        Form.append("phone_number", seller.phone_number)
+        Form.append("password", seller.password)
+        Form.append("store_description", seller.store_description)
+        Form.append("foto", imageFile)
+
+        axios({
+            method: "PUT",
+            url: `${process.env.REACT_APP_API}/seller/manage/${email}`,
+            headers: {
+                "content-type": "multipart/form-data",
+                tokenauth: token,
+            },
+            data: Form,
+        })
+            .then((res) => {
+                console.log(res.data)
+                history.push("/")
+            })
+            .catch((err) => {
+                console.log(err.response)
+            })
+    }
+
+
+    useEffect(() => {
+        if (acceptedFiles.length > 0) {
+            acceptedFiles.map((data) => {
+                setImageSource(URL.createObjectURL(data))
+                setImageFile(data)
+                return true
+            })
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [acceptedFiles])
+
+    const Change = (el) => {
+        const newdata = { ...seller }
+        newdata[el.target.name] = el.target.value
+        setseller(newdata)
+    }
     return (
         <div>
             <Header />
@@ -18,27 +91,34 @@ export default function profileSeller() {
                         <div>
                             <div className="d-flex justify-content-between pb-3">
                                 <label className="form-label padding">Name</label>
-                                <input type="text" className="form-control" name="" id="" />
+                                <input type="text" onChange={Change} className="form-control" name="" id="" />
                             </div>
                             <div className="d-flex justify-content-between pb-3">
                                 <label className="form-label padding">Email</label>
-                                <input type="email" className="form-control" name="" id="" />
+                                <input type="email" onChange={Change} className="form-control" name="" id="" />
                             </div>
                             <div className="d-flex justify-content-between pb-3">
                                 <label className="form-label padding">Phone</label>
-                                <input type="number" className="form-control" name="" id="" />
+                                <input type="number" onChange={Change} className="form-control" name="" id="" />
+                            </div>
+                            <div className="d-flex justify-content-between pb-3">
+                                <label className="form-label padding">Password</label>
+                                <input type="password" onChange={Change} className="form-control" name="" id="" />
                             </div>
                             <div className="d-flex justify-content-between pb-3">
                                 <label className="form-label padding">Description</label>
-                                <textarea className="form-control" name="" id="" cols="24" rows="5"></textarea>
+                                <textarea className="form-control" onChange={Change} name="" id="" cols="24" rows="5"></textarea>
                             </div>
                             <br />
-                            <button type="button" className="btn btn-primary rounded-pill margin-save">Save</button>
+                            <button type="button" onClick={Update} className="btn btn-primary rounded-pill margin-save">Save</button>
                         </div>
-                        <div className="verticalLine">
-                            <img className="rounded-circle photo ms-5" src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1634130450/chiyobayi_plxami.jpg" alt="" />
+                        <div className="verticalLine" {...getRootProps()}>
+                        <input {...getInputProps()} />
+                                {ImageSource === null ? null : (
+                            <img className="rounded-circle photo ms-5" src={ImageSource} alt="" />
+                            )}
                             <br />
-                            <button type="button" className="btn btn-outline-secondary rounded-pill ms-5 mt-2">Select Image</button>
+                            <button type="button" onClick={open} className="btn btn-outline-secondary rounded-pill ms-5 mt-2">Select Image</button>
                         </div>
                     </form>                    
                 </div>
@@ -46,3 +126,6 @@ export default function profileSeller() {
         </div>
     )
 }
+
+
+export default withAuth(ProfileSeller)

@@ -9,13 +9,14 @@ import { useSelector } from "react-redux"
 import axios from "axios";
 
 function ShippingAddress() {
-    const [addresses, setAddresses] = useState({
+    const [address, setAddresses] = useState({
         address_tempat:'',
         address_nama:'',
         address_telepon:'',
         address_alamat:'',
         address_kodepos:'',
         address_kota:'',
+        address_email:'',
     })
 
     const history = useHistory()
@@ -23,13 +24,13 @@ function ShippingAddress() {
     const Form = new FormData()
 
     const Save = () => {
-        Form.append("address_tempat", addresses.address_tempat)
-        Form.append("address_nama", addresses.address_nama)
-        Form.append("address_telepon", addresses.address_telepon)
-        Form.append("address_alamat", addresses.address_alamat)
-        Form.append("address_kodepos", addresses.address_kodepos)
-        Form.append("address_kota", addresses.address_kota)
-        Form.append("address_email", addresses.address_email)
+        Form.append("address_tempat", address.address_tempat)
+        Form.append("address_nama", address.address_nama)
+        Form.append("address_telepon", address.address_telepon)
+        Form.append("address_alamat", address.address_alamat)
+        Form.append("address_kodepos", address.address_kodepos)
+        Form.append("address_kota", address.address_kota)
+        Form.append("address_email", address.address_email)
 
         axios({
             method: "POST",
@@ -50,7 +51,7 @@ function ShippingAddress() {
     }
 
     const Change = (el) => {
-        const newdata = { ...addresses }
+        const newdata = { ...address }
         newdata[el.target.name] = el.target.value
         setAddresses(newdata)
     }
@@ -135,17 +136,19 @@ function ShippingAddress() {
                                             <input type="number" name="address_kodepos" onChange={Change} className="form-control" id=""/>
                                         </div>
                                         </div>
-                                        <div className="mb-3">
+                                        <div className="d-flex">
+                                        <div className="mb-3 pe-3">
                                             <label className="form-label">
                                             City or Subdistrict
                                             </label>
-                                            <input type="number" name="address_kota" onChange={Change} className="form-control w-50" id=""/>
+                                            <input type="text" name="address_kota" onChange={Change} className="form-control" id=""/>
                                         </div>
-                                        <div className="mb-3 form-check">
-                                            <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                                            <label className="form-check-label" htmlFor="exampleCheck1">
-                                            Make the primary address
+                                        <div className="mb-3">
+                                            <label className="form-label">
+                                            Email
                                             </label>
+                                            <input type="email" name="address_email" onChange={Change} className="form-control" id=""/>
+                                        </div>
                                         </div>
                                 </div>
                                 <div className="modal-footer">
