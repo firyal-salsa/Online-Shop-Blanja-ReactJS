@@ -16,35 +16,35 @@ function NavbarIcons(props) {
     const [dropdownChat, setDropdownChat] = useState(false);
     const toggleOpenChat = () => setDropdownChat(!dropdownChat);
 
-    const [bag, setbag] = useState([])
-    const { token } = useSelector((state) => state.users)
-    const [filteredData, setFilteredData] = useState(bag);
+    // const [bag] = useState([])
+    // const { token } = useSelector((state) => state.users)
+    // const [filteredData, setFilteredData] = useState(bag);
 
-    useEffect(() => {
-        axios({
-          method: "GET",
-          url: `${process.env.REACT_APP_API}/bag`,
-          headers: {
-              tokenauth: token,
-          },
-      })
-          .then((res) => {
-              console.log(res.data.result.length)
-              setFilteredData(res.data.result.length)
-          })
-          .catch((err) => {
-              console.log(err.response)
-          })
+    // useEffect(() => {
+    //     axios({
+    //       method: "GET",
+    //       url: `${process.env.REACT_APP_API}/bag`,
+    //       headers: {
+    //           tokenauth: token,
+    //       },
+    //   })
+    //       .then((res) => {
+    //           console.log(res.data.result.length)
+    //           setFilteredData(res.data.result.length)
+    //       })
+    //       .catch((err) => {
+    //           console.log(err.response)
+    //       })
       
-          // eslint-disable-next-line react-hooks/exhaustive-deps
-      })
+    //       // eslint-disable-next-line react-hooks/exhaustive-deps
+    //   })
 
     return (
         <div id="icons" className="d-flex mx-5 ps-5">
             <Link to="/bag" className="text-secondary m-3 p-2">
                 <i className="bi-cart" />
                 <span className="badge rounded-pill bg-danger">
-                {filteredData}
+                {/* {filteredData} */}
                 <span className="visually-hidden">bag</span>
                 </span>
             </Link>

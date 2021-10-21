@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Cards from "../../components/cards";
 import axios from "axios";
 import Logo from "../../components/logo";
-import Navbar from "../../components/navbaricons";
+import Navbar from "../../components/navbar";
 import CarouselNews from "../../components/carouselnews";
 import CarouselCategory from "../../components/carouselcategory";
 import { useHistory } from "react-router";
@@ -32,9 +32,7 @@ function Home() {
   
   useEffect(() => {
     axios(
-      onSubmit === 'nameofproduct'? `${process.env.REACT_APP_API}/product/produk_nama` :
-                  'price'? `${process.env.REACT_APP_API}/product/produk_harga` :
-                  'newest'? `${process.env.REACT_APP_API}/product`: 'undefined' 
+           `${process.env.REACT_APP_API}/product`
       )
       .then((response) => {
         console.log(response.data.result);
@@ -144,7 +142,7 @@ function Home() {
           <section>
             <h3 className="font-weight-bold">New</h3>
             <p className="text-secondary">You’ve never seen it before!</p>
-            <section className="cards">
+            <section className="cards mx-5">
               {filteredData.map((value, index) => {
                 return (
                   <Cards
@@ -164,7 +162,7 @@ function Home() {
             <p className="text-secondary">
               Find clothes that are trending recently
             </p>
-            <section className="cards">
+            <section className="cards mx-5">
             {filteredData.map((value, index) => {
                 return (
                   <Cards

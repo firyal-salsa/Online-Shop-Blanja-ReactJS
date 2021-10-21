@@ -199,7 +199,9 @@ class Products extends Component {
                         <p className="mt-4">Price</p>
                         <h3 className="fw-bold">Rp. {this.state.prods.produk_harga}</h3>
                         <div className="pt-5">
-                        <Button />
+                        <Button
+                        produk_id={this.state.prods.produk_id}
+                        />
                         </div>
                     </div>
                 </section>

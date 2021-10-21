@@ -4,32 +4,15 @@ import { useSelector } from "react-redux"
 import withAuth from "../../utils/withAuth"
 import axios from "axios"
 import Header from "../../components/header_bag";
-import FormData from 'form-data'
+// import FormData from 'form-data'
 
 function Bag() {
   const [bag, setbag] = useState([])
   const { token } = useSelector((state) => state.users)
   const [filteredData, setFilteredData] = useState(bag);
-  const [jumlah, setJumlah] = useState(filteredData)
-  const Form = new FormData()
+  // const [jumlah, setJumlah] = useState(filteredData)
+  // const Form = new FormData()
 
-  const manageJumlah = () => {
-    Form.append("bag_jumlah", bag.bag_jumlah)
-    axios({
-        method: "PUT",
-        url: `${process.env.REACT_APP_API}/bag/${bag_id}`,
-        headers: {
-            tokenauth: token,
-        },
-        data: Form,
-    })
-        .then((res) => {
-            // console.log(res.data)
-        })
-        .catch((err) => {
-            // console.log(err.response)
-        })
-}
 
 useEffect(() => {
   axios({
@@ -40,7 +23,6 @@ useEffect(() => {
     },
 })
     .then((res) => {
-        console.log(res.data.result)
         setbag(res.data.result)
         setFilteredData(res.data.result);
     })

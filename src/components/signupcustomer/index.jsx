@@ -21,7 +21,6 @@ function SignUpCS(){
       password: data.password,
     })
     .then(res=>{
-      console.log(res.data)
       history.push("/login");
     })
     .catch(err => console.log(err))

@@ -19,16 +19,21 @@ function Routers() {
                 <Route exact path="/shippingaddress">
                     {isAuth ? <ShippingAddress /> : <Redirect to="/login" />}
                 </Route> 
-                <PrivateRoute exact path="/profilecustomer" component={ProfileCustomer} />
-                <PrivateRoute exact path="/profileseller" component={ProfileSeller} />
+                <PrivateRoute exact path="/profilecustomer">
+                    {isAuth ? <ProfileCustomer /> : <Redirect to="/login" />}
+                </PrivateRoute>
+                <PrivateRoute exact path="/profileseller">
+                    {isAuth ? <ProfileSeller /> : <Redirect to="/login" />}
+                </PrivateRoute>
                 <Route exact path="/inventory">
                     {isAuth ? <Inventory /> : <Redirect to="/login" />}
                 </Route>
+                <PrivateRoute path="/bag">
+                    {isAuth ? <Bag /> : <Redirect to="/login" />}
+                </PrivateRoute>
                 <Route path="/products/:produk_nama" component={Products} />
-                <Route path="/product/:produk_id" component={Products} />
                 <Route path="/signup" component={SignUp} />
                 <Route path="/login" component={Login} />
-                <Route path="/bag" component={Bag} />
                 <Route path="/" component={Home} />
             </Switch>
         </BrowserRouter>

@@ -9,57 +9,64 @@ import axios from "axios";
 import { useForm } from 'react-hook-form';
 
 function ShippingAddress() {
-    const dispatch = useDispatch();
 	const { token } = useSelector((state) => state.users)
+    const [addrs, setaddress] = useState({
+        address_nama:'',
+        address_alamat: '',
+        address_tempat: '',
+        address_kodepos: 0,
+        address_kota: '',
+        address_email : '',
+        address_telepon: 0,
 
-	const url = `${process.env.REACT_APP_API}/customer/address`;
-	const urlGetUser = `${process.env.REACT_APP_API}/customer/address`;
-	const [user, setUser] = useState([
-		{ address_tempat: '',address_nama: '', address_telepon: 0, address_alamat: '', address_kodepos: 0, 
-        address_kota: '', address_email: ''},
-	]);
-
-	const onSubmitForm = async (user) => {
-		try {
-			let Form = new FormData();
-			Form.append("address_tempat", user.address_tempat)
-            Form.append("address_nama", user.address_nama)
-            Form.append("address_telepon", user.address_telepon)
-            Form.append("address_alamat", user.address_alamat)
-            Form.append("address_kodepos", user.address_kodepos)
-            Form.append("address_kota", user.address_kota)
-            Form.append("address_email", user.address_email)
-			axios
-				.put(url, Form, {
-					headers: {
-						tokenauth: token,
-						'Content-type': 'multipart/form-data',
-					},
-				})
-				.then((res) => {
-					console.log(res)
-				});
-		} catch (error) {
-			console.log(error)
-		}
-	};
-
-	const { address, handleSubmit, reset } = useForm();
-
-	useEffect(() => {
-		axios
-			.get(urlGetUser, {
-				headers: {
-					tokenauth: token,
-				},
-			})
-			.then((res) => {
-				setUser(res.data.result);
-				reset(res.data);
-			});
-	}, [urlGetUser, reset, dispatch, token]);
-
+    })
+    const [filteredData, setFilteredData] = useState(addrs);
     
+useEffect(() => {
+    axios({
+      method: "GET",
+      url: `${process.env.REACT_APP_API}/customer/address`,
+      headers: {
+          tokenauth: token,
+      },
+  })
+      .then((res) => {
+          setaddress(res.data.result)
+          setFilteredData(res.data.result);
+      })
+      .catch((err) => {
+          console.log(err.response)
+      })
+  
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+  })
+
+//   const Save = () => {
+//     Form.append("produk_nama", product.produk_nama)
+//     Form.append("produk_toko", product.produk_toko)
+//     Form.append("produk_harga", product.produk_harga)
+//     Form.append("produk_terjual", product.produk_terjual)
+//     Form.append("categories", product.categories)
+//     Form.append("produk_foto", imageFile)
+
+//     axios({
+//         method: "POST",
+//         url: `${process.env.REACT_APP_API}/product`,
+//         headers: {
+//             "content-type": "multipart/form-data",
+//             tokenauth: token,
+//         },
+//         data: Form,
+//     })
+//         .then((res) => {
+//             console.log(res.data)
+//             history.push("/")
+//         })
+//         .catch((err) => {
+//             console.log(err)
+//         })
+// }
+
     return (
         <div>
             <Header />
@@ -75,12 +82,16 @@ function ShippingAddress() {
                     </div>
                     <br />
                     <div className="card border-primary mb-3">
+                    {filteredData.map((value, index) => {
+                return (
                     <div className="card-body layout-address">
-                            <h5 className="card-title">Name</h5>
+                            <h5 className="card-title">{value.address_nama}</h5>
                             <p className="card-text">
-                            Alamat
+                            {value.address_alamat}
                             </p>
                     </div>
+                      );
+                    })}
                     </div>
 
                         <div
@@ -103,7 +114,7 @@ function ShippingAddress() {
                                     aria-label="Close"
                                 />
                                 </div>
-                                <form onSubmit={handleSubmit(onSubmitForm)}>
+                                {/* <form onSubmit={handleSubmit(onSubmitForm)}>
                                 <div className="modal-body">
                                         <div className="mb-3">
                                             <label className="form-label">
@@ -173,7 +184,7 @@ function ShippingAddress() {
                                     Save changes
                                 </button>
                                 </div>
-                                </form>
+                                </form> */}
                             </div>
                             </div>
                         </div>
