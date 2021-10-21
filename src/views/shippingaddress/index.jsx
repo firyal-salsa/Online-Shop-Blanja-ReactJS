@@ -1,60 +1,63 @@
-import React, { useState} from 'react'
+import React, { useEffect, useState} from 'react'
 import Header from "../../components/headeruser"
 import Aside from "../../components/asidecustomer"
 import "./style/style.scoped.css"
 import withAuth from "../../utils/withAuth"
 import FormData from 'form-data'
-import { useHistory } from "react-router-dom"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from 'react-redux';
 import axios from "axios";
+import { useForm } from 'react-hook-form';
 
 function ShippingAddress() {
-    const [address, setAddresses] = useState({
-        address_tempat:'',
-        address_nama:'',
-        address_telepon:0,
-        address_alamat:'',
-        address_kodepos:0,
-        address_kota:'',
-        address_email:'',
-    })
+    const dispatch = useDispatch();
+	const { token } = useSelector((state) => state.users)
 
-    const history = useHistory()
-    const { token } = useSelector((state) => state.users)
-    const Form = new FormData()
+	const url = `${process.env.REACT_APP_API}/customer/address`;
+	const urlGetUser = `${process.env.REACT_APP_API}/customer/address`;
+	const [user, setUser] = useState([
+		{ address_tempat: '',address_nama: '', address_telepon: 0, address_alamat: '', address_kodepos: 0, 
+        address_kota: '', address_email: ''},
+	]);
 
-    const Save = () => {
-        Form.append("address_tempat", address.address_tempat)
-        Form.append("address_nama", address.address_nama)
-        Form.append("address_telepon", address.address_telepon)
-        Form.append("address_alamat", address.address_alamat)
-        Form.append("address_kodepos", address.address_kodepos)
-        Form.append("address_kota", address.address_kota)
-        Form.append("address_email", address.address_email)
+	const onSubmitForm = async (user) => {
+		try {
+			let Form = new FormData();
+			Form.append("address_tempat", user.address_tempat)
+            Form.append("address_nama", user.address_nama)
+            Form.append("address_telepon", user.address_telepon)
+            Form.append("address_alamat", user.address_alamat)
+            Form.append("address_kodepos", user.address_kodepos)
+            Form.append("address_kota", user.address_kota)
+            Form.append("address_email", user.address_email)
+			axios
+				.put(url, Form, {
+					headers: {
+						tokenauth: token,
+						'Content-type': 'multipart/form-data',
+					},
+				})
+				.then((res) => {
+					console.log(res)
+				});
+		} catch (error) {
+			console.log(error)
+		}
+	};
 
-        axios({
-            method: "POST",
-            url: `${process.env.REACT_APP_API}/customer/address`,
-            headers: {
-                "content-type": "multipart/form-data",
-                tokenauth: token,
-            },
-            data: Form,
-        })
-            .then((res) => {
-                console.log(res.data)
-                history.push("/shippingaddress")
-            })
-            .catch((err) => {
-                console.log(err.response)
-            })
-    }
+	const { address, handleSubmit, reset } = useForm();
 
-    const Change = (el) => {
-        const newdata = { ...address }
-        newdata[el.target.name] = el.target.value
-        setAddresses(newdata)
-    }
+	useEffect(() => {
+		axios
+			.get(urlGetUser, {
+				headers: {
+					tokenauth: token,
+				},
+			})
+			.then((res) => {
+				setUser(res.data.result);
+				reset(res.data);
+			});
+	}, [urlGetUser, reset, dispatch, token]);
 
     
     return (
@@ -73,11 +76,10 @@ function ShippingAddress() {
                     <br />
                     <div className="card border-primary mb-3">
                     <div className="card-body layout-address">
-                        <h5 className="card-title">Nama</h5>
-                        <p className="card-text">
-                        Alamat
-                        </p>
-                        <b className="text-primary">Change Address</b>
+                            <h5 className="card-title">Name</h5>
+                            <p className="card-text">
+                            Alamat
+                            </p>
                     </div>
                     </div>
 
@@ -101,26 +103,29 @@ function ShippingAddress() {
                                     aria-label="Close"
                                 />
                                 </div>
-                                <form>
+                                <form onSubmit={handleSubmit(onSubmitForm)}>
                                 <div className="modal-body">
                                         <div className="mb-3">
                                             <label className="form-label">
                                             Save address as (ex : home address, office address)
                                             </label>
-                                            <input type="text" className="form-control" name="address_tempat" onChange={Change} placeholder="Rumah"/>
+                                            <input type="text" className="form-control" defaultValue={user[0].address_tempat}
+									{...address('address_tempat')} name="address_tempat" placeholder="Rumah"/>
                                         </div>
                                         <div className="d-flex">
                                         <div className="mb-3 pe-3">
                                             <label className="form-label">
                                             Recipient's name
                                             </label>
-                                            <input type="text" name="address_nama" onChange={Change} className="form-control" id=""/>
+                                            <input type="text" defaultValue={user[0].address_nama}
+									{...address('address_nama')} name="address_nama" className="form-control" id=""/>
                                         </div>
                                         <div className="mb-3">
                                             <label className="form-label">
                                             Recipient's telephone number
                                             </label>
-                                            <input type="number" name="address_telepon" onChange={Change} className="form-control" id=""/>
+                                            <input type="number" defaultValue={user[0].address_telephone}
+									{...address('address_telephone')} name="address_telepon" className="form-control" id=""/>
                                         </div>
                                         </div>
                                         <div className="d-flex">
@@ -128,13 +133,15 @@ function ShippingAddress() {
                                             <label className="form-label">
                                             Address
                                             </label>
-                                            <input type="text" name="address_alamat" onChange={Change} className="form-control" id=""/>
+                                            <input type="text" defaultValue={user[0].address_alamat}
+									{...address('address_alamat')} name="address_alamat" className="form-control" id=""/>
                                         </div>
                                         <div className="mb-3">
                                             <label className="form-label">
                                             Postal code
                                             </label>
-                                            <input type="number" name="address_kodepos" onChange={Change} className="form-control" id=""/>
+                                            <input type="number" defaultValue={user[0].address_kodepos}
+									{...address('address_kodepos')} name="address_kodepos" className="form-control" id=""/>
                                         </div>
                                         </div>
                                         <div className="d-flex">
@@ -142,13 +149,15 @@ function ShippingAddress() {
                                             <label className="form-label">
                                             City or Subdistrict
                                             </label>
-                                            <input type="text" name="address_kota" onChange={Change} className="form-control" id=""/>
+                                            <input type="text" name="address_kota" defaultValue={user[0].address_kota}
+									{...address('address_kota')} className="form-control" id=""/>
                                         </div>
                                         <div className="mb-3">
                                             <label className="form-label">
                                             Email
                                             </label>
-                                            <input type="email" name="address_email" onChange={Change} className="form-control" id=""/>
+                                            <input type="email" name="address_email" defaultValue={user[0].address_email}
+									{...address('address_email')} className="form-control" id=""/>
                                         </div>
                                         </div>
                                 </div>
@@ -160,7 +169,7 @@ function ShippingAddress() {
                                 >
                                     Cancel
                                 </button>
-                                <button type="button" onClick={Save} className="btn btn-primary">
+                                <button type="submit"  className="btn btn-primary">
                                     Save changes
                                 </button>
                                 </div>

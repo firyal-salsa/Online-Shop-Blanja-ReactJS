@@ -79,7 +79,9 @@ function ProfileCustomer() {
         <div>
             <Header />
             <div className="d-flex">
-            <Aside />
+            <Aside
+                data={customer}
+            />
                 <div className="card p-3 px-5 m-5 mx-4">
                     <h3>My Profile Store</h3>
                      <label>Manage your profile information </label>

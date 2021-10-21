@@ -4,6 +4,7 @@ import Logo from "../../components/logo";
 import Navbar from "../../components/navbaricons";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Button from "../../components/addBag"
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 class Products extends Component {
@@ -198,9 +199,7 @@ class Products extends Component {
                         <p className="mt-4">Price</p>
                         <h3 className="fw-bold">Rp. {this.state.prods.produk_harga}</h3>
                         <div className="pt-5">
-                        <button type="button" className="btn btn-outline-secondary py-2 px-5 me-2 rounded-pill">Chat</button>
-                        <button type="button" className="btn btn-outline-secondary py-2 px-5 me-2 rounded-pill">Add Bag</button>
-                        <button type="button" className="btn btn-primary py-2 btn-buy-now rounded-pill">Buy Now</button>
+                        <Button />
                         </div>
                     </div>
                 </section>

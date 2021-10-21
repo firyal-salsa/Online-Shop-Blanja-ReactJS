@@ -1,10 +1,56 @@
 import "./style/style.scoped.css";
-import React, { Component } from "react";
-//import axios from "axios"
+import React, { useEffect, useState} from "react"
+import { useSelector } from "react-redux"
+import withAuth from "../../utils/withAuth"
+import axios from "axios"
 import Header from "../../components/header_bag";
+import FormData from 'form-data'
 
-class Bag extends Component {
-  render() {
+function Bag() {
+  const [bag, setbag] = useState([])
+  const { token } = useSelector((state) => state.users)
+  const [filteredData, setFilteredData] = useState(bag);
+  const [jumlah, setJumlah] = useState(filteredData)
+  const Form = new FormData()
+
+  const manageJumlah = () => {
+    Form.append("bag_jumlah", bag.bag_jumlah)
+    axios({
+        method: "PUT",
+        url: `${process.env.REACT_APP_API}/bag/${bag_id}`,
+        headers: {
+            tokenauth: token,
+        },
+        data: Form,
+    })
+        .then((res) => {
+            // console.log(res.data)
+        })
+        .catch((err) => {
+            // console.log(err.response)
+        })
+}
+
+useEffect(() => {
+  axios({
+    method: "GET",
+    url: `${process.env.REACT_APP_API}/bag`,
+    headers: {
+        tokenauth: token,
+    },
+})
+    .then((res) => {
+        console.log(res.data.result)
+        setbag(res.data.result)
+        setFilteredData(res.data.result);
+    })
+    .catch((err) => {
+        console.log(err.response)
+    })
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+})
+
     return (
       <body className="bag-body">
         <Header />
@@ -16,7 +62,7 @@ class Bag extends Component {
               <div className="card">
                 <div className="card-body">
                   <h5 id="textshopping" className="card-title font-weight-bold">
-                    Shopping summary
+                    Shopping summary 
                   </h5>
                   <div className="price">
                     <p id="total" className="card-text text-secondary">
@@ -47,24 +93,26 @@ class Bag extends Component {
               </div>
             </div>
             <br />
+            {filteredData.map((value, index) => {
+                return (
             <div className="card row w-75 m-1 p-2 h-75">
               <div className="d-flex justify-content-between px-4 d-flex align-items-center">
                 <input className="listbag-red" type="checkbox" />
                 <div className="d-flex justify-content-start">
                   <img
                     className="card-img w-25 p-3"
-                    src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1630823737/products/bac0dc21-0139-4dd0-9ed1-257c6d98b87123df99e4247ebcca365390bded253347_ymbyfr.jpg"
+                    src={value.products.produk_foto}
                     alt=""
                   />
                   <span className="d-flex align-items-center mx-1 py-3 w-50 flex-column lh-5">
-                    <p id="product-name" className="card-text w-100 pt-5">
-                    Zippy Playsuit Disney Pooh
+                    <p id="bag-name" className="card-text w-100 pt-5">
+                    {value.products.produk_nama}
                     </p>
                     <p
                       id="store-name"
                       className="card-text text-secondary w-100 pt-1"
                     >
-                      Little Palmerhaus
+                      {value.products.produk_toko}
                     </p>
                   </span>
                 </div>
@@ -72,44 +120,16 @@ class Bag extends Component {
                   <input type="number" min="1" className="w-50" />
                 </span>
                 <p id="number" className="card-text fw-bold">
-                Rp. 85000
+                Rp.{value.products.produk_harga}
                 </p>
               </div>
             </div>
-            <div className="card row w-75 m-1 p-2 h-75">
-              <div className="d-flex justify-content-between px-4 d-flex align-items-center">
-                <input className="listbag-red" type="checkbox" />
-                <div className="d-flex justify-content-start">
-                  <img
-                    className="card-img w-25 p-3"
-                    src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1629017907/products/49916525-d3a4-4eee-af8c-3542659951a07036d7bc7c199027693c90430fb727c6_zzw4pf.jpg"
-                    alt=""
-                  />
-                  <span className="d-flex align-items-center mx-1 py-3 w-50 flex-column lh-5">
-                    <p id="product-name" className="card-text w-100 pt-5">
-                    Sky Pants Jogger Chinos
-                    </p>
-                    <p
-                      id="store-name"
-                      className="card-text text-secondary w-100 pt-1"
-                    >
-                      Little Palmerhaus
-                    </p>
-                  </span>
-                </div>
-                <span id="number">
-                  <input type="number" min="1" className="w-50" />
-                </span>
-                <p id="number" className="card-text fw-bold">
-                Rp. 69000
-                </p>
-              </div>
-            </div>
+            );
+          })}
           </main>
         </div>
       </body>
     );
   }
-}
 
-export default Bag;
+export default withAuth(Bag)

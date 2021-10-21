@@ -8,8 +8,6 @@ import SignUp from "./views/signup"
 import ProfileSeller from "./views/profileSeller"
 import ProfileCustomer from "./views/profileCustomer"
 import ShippingAddress from "./views/shippingaddress"
-import OrderCS from "./views/OrderCustomer"
-import OrderSL from "./views/OrderSeller"
 import PrivateRoute from "./router.auth"
 import { useSelector } from 'react-redux';
 
@@ -18,8 +16,6 @@ function Routers() {
     return (
         <BrowserRouter>
             <Switch>
-                <Route path="/orderseller" component={OrderSL} /> 
-                <Route path="/ordercustomer" component={OrderCS} />
                 <Route exact path="/shippingaddress">
                     {isAuth ? <ShippingAddress /> : <Redirect to="/login" />}
                 </Route> 
