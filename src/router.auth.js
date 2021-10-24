@@ -1,6 +1,7 @@
 import React from "react"
 import { Route, Redirect } from "react-router-dom"
 import { useSelector } from "react-redux"
+import Inventory from "./views/inventory"
 
 function Private({ component: Component, ...rest }) {
     const { isAuth } = useSelector((state) => state.users)

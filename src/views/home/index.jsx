@@ -4,15 +4,18 @@ import Cards from "../../components/cards";
 import axios from "axios";
 import Logo from "../../components/logo";
 import Navbar from "../../components/navbar";
+import NavbarAuth from "../../components/navbaricons";
 import CarouselNews from "../../components/carouselnews";
 import CarouselCategory from "../../components/carouselcategory";
 import { useHistory } from "react-router";
 import { useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
 
 function Home() {
   const [allData, setAllData] = useState([]);
   const [filteredData, setFilteredData] = useState(allData);
   const history = useHistory();
+  const { isAuth } = useSelector((state) => state.users)
   const { register, handleSubmit} = useForm();
 
   const onSubmit = data => { 
@@ -132,7 +135,7 @@ function Home() {
           </div>
         </div>
         <div id="header-navbar-home">
-          <Navbar />
+          {isAuth? <NavbarAuth /> : <Navbar />}
         </div>
       </nav>
       <div className="container pt-5 mx-5">

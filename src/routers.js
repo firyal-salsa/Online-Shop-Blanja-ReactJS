@@ -13,6 +13,7 @@ import { useSelector } from 'react-redux';
 
 function Routers() {
     const { isAuth } = useSelector((state) => state.users)
+    const { role } = useSelector((state) => state.users)
     return (
         <BrowserRouter>
             <Switch>
@@ -25,7 +26,7 @@ function Routers() {
                 <PrivateRoute exact path="/profileseller">
                     {isAuth ? <ProfileSeller /> : <Redirect to="/login" />}
                 </PrivateRoute>
-                <Route exact path="/inventory">
+                <Route path="/inventory">
                     {isAuth ? <Inventory /> : <Redirect to="/login" />}
                 </Route>
                 <PrivateRoute path="/bag">
