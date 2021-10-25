@@ -63,8 +63,8 @@
       <img src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1634190001/Blanja/12_sgcqyj.png" width="300px" alt="Arkademylogo.svg" />
       <p>Inventory<p/>
     </th>
-  </tr colspan="3">
-    <th>
+  </tr>
+    <th colspan="3">
     <img src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1635131359/Blanja/Add_a_heading_bqofuh.png" width="300px" alt="Arkademylogo.svg" />
      <th>
   <tr>
