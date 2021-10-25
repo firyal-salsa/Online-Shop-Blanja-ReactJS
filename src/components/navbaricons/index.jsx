@@ -19,12 +19,16 @@ function NavbarIcons(props) {
     const toggleOpenChat = () => setDropdownChat(!dropdownChat);
 
     const { data } = useSelector((state) => state.users)
+    const { isAuth } = useSelector((state) => state.users)
+    const seller = data.data.result[0].hasOwnProperty('storename')
 
     const cssl = data.data.result
 
     const logout = () => {
-        cssl.pop()
+        cssl.splice(0, cssl.length)
       };
+    
+    const sl = isAuth && seller ? "/profileseller" : "/profilecustomer"
 
     return (
         <div id="icons" className="d-flex mx-5 ps-5">
@@ -53,8 +57,8 @@ function NavbarIcons(props) {
             <span className="mt-3 pl-1 pointer" onClick={toggleOpen}>
                 <img className="rounded-circle navbaricons-img" src={user.data.data.result[0].foto} alt=""/>
                 <div className={`dropdown-menu ${dropdown ? 'show' : ''}`} aria-labelledby="dropdownMenuButton">
-                    <h6>{props.name}</h6>
-                    <Link to="/profileseller" className="dropdown-item">
+                    <h6>{data.data.result[0].name}</h6>
+                    <Link to={sl} className="dropdown-item">
                         Edit Profile              
                     </Link>
                     <Link onClick={logout} to="/login" className="dropdown-item">

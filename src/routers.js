@@ -12,28 +12,34 @@ import { useSelector } from 'react-redux';
 
 function Routers() {
     const { isAuth } = useSelector((state) => state.users)
-    console.log(isAuth)
+    const { data } = useSelector((state) => state.users)
+    const seller = data.data.result[0].hasOwnProperty('store_name')
+
     return (
         <BrowserRouter>
             <Switch>
                 <Route exact path="/shippingaddress">
-                    {isAuth ? <ShippingAddress /> : <Redirect to="/login" />}
+                    {isAuth && seller ? <ShippingAddress /> : <Redirect to="/login" />}
                 </Route> 
                 <Route exact path="/profilecustomer">
-                    {isAuth ? <ProfileCustomer /> : <Redirect to="/login" />}
+                    {isAuth != seller ? <ProfileCustomer /> : <Redirect to="/login" />}
                 </Route>
                 <Route exact path="/profileseller">
-                    {isAuth ? <ProfileSeller /> : <Redirect to="/login" />}
+                    {isAuth && seller ? <ProfileSeller /> : <Redirect to="/login" />}
                 </Route>
                 <Route path="/inventory">
-                    {isAuth ? <Inventory /> : <Redirect to="/login" />}
+                    {isAuth && seller ? <Inventory /> : <Redirect to="/login" />}
                 </Route>
                 <Route path="/bag">
-                    {isAuth ? <Bag /> : <Redirect to="/login" />}
+                    {isAuth != seller? <Bag /> : <Redirect to="/login" />}
                 </Route>
                 <Route path="/products/:produk_nama" component={Products} />
-                <Route path="/signup" component={SignUp} />
-                <Route path="/login" component={Login} />
+                <Route path="/signup">
+                    {!isAuth? <SignUp /> : <Redirect to="/" />}
+                </Route>
+                <Route path="/login">
+                    {!isAuth? <Login /> : <Redirect to="/" />}
+                </Route>
                 <Route path="/" component={Home} />
             </Switch>
         </BrowserRouter>
