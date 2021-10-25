@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
 import "./style/style.scoped.css"
 import { Link } from 'react-router-dom';
+import { useSelector } from "react-redux"
 
-export class AsideSeller extends Component {
-    render() {
+function AsideSeller() {
+  const sl = useSelector((state) => state.users)
+    console.log(sl.data.data.result[0])
         return (
             <aside className="layout">
                 <div className="d-flex p-5">
-                    <img className="rounded-circle asideseller-width" src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1634130450/chiyobayi_plxami.jpg" alt="" />
+                    <img className="rounded-circle asideseller-width" src={sl.data.data.result[0].foto} alt="" />
                     <div className="pt-4" id="asideseller-name">
-                    <h5 className="fw-bold">Baby Chiyo</h5>
+                    <h5 className="fw-bold">{sl.data.data.result[0].name}</h5>
                     <i class="bi bi-pencil-fill">Ubah profile</i>
                     </div>
                 </div>
@@ -98,6 +100,5 @@ export class AsideSeller extends Component {
             </aside>
         )
     }
-}
 
 export default AsideSeller

@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 
 function NavbarIcons(props) {
-
+    const user = useSelector((state) => state.users)
 
     const [dropdown, setDropdown] = useState(false);
     const toggleOpen = () => setDropdown(!dropdown);
@@ -18,35 +18,20 @@ function NavbarIcons(props) {
     const [dropdownChat, setDropdownChat] = useState(false);
     const toggleOpenChat = () => setDropdownChat(!dropdownChat);
 
-    // const [bag] = useState([])
-    // const { token } = useSelector((state) => state.users)
-    // const [filteredData, setFilteredData] = useState(bag);
+    const { data } = useSelector((state) => state.users)
 
-    // useEffect(() => {
-    //     axios({
-    //       method: "GET",
-    //       url: `${process.env.REACT_APP_API}/bag`,
-    //       headers: {
-    //           tokenauth: token,
-    //       },
-    //   })
-    //       .then((res) => {
-    //           console.log(res.data.result.length)
-    //           setFilteredData(res.data.result.length)
-    //       })
-    //       .catch((err) => {
-    //           console.log(err.response)
-    //       })
-      
-    //       // eslint-disable-next-line react-hooks/exhaustive-deps
-    //   })
+    const cssl = data.data.result
+
+    const logout = () => {
+        cssl.pop()
+      };
 
     return (
         <div id="icons" className="d-flex mx-5 ps-5">
             <Link to="/bag" className="text-secondary m-3 p-2">
                 <i className="bi-cart" />
                 <span className="badge rounded-pill bg-danger">
-                {/* {filteredData} */}
+                
                 <span className="visually-hidden">bag</span>
                 </span>
             </Link>
@@ -64,14 +49,15 @@ function NavbarIcons(props) {
                         <p>No Message Yet!</p>
                     </div>
             </Link>
+             
             <span className="mt-3 pl-1 pointer" onClick={toggleOpen}>
-                <img className="rounded-circle navbaricons-img" src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1634130450/chiyobayi_plxami.jpg" alt=""/>
+                <img className="rounded-circle navbaricons-img" src={user.data.data.result[0].foto} alt=""/>
                 <div className={`dropdown-menu ${dropdown ? 'show' : ''}`} aria-labelledby="dropdownMenuButton">
                     <h6>{props.name}</h6>
                     <Link to="/profileseller" className="dropdown-item">
                         Edit Profile              
                     </Link>
-                    <Link to="/login" className="dropdown-item">
+                    <Link onClick={logout} to="/login" className="dropdown-item">
                         Logout
                     </Link>
                 </div>

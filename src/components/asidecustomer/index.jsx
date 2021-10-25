@@ -1,39 +1,17 @@
 import React, {useState} from 'react'
 import "./style/style.scoped.css"
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
 import { useSelector} from 'react-redux';
-import axios from 'axios';
 
 function AsideSeller() {
-  // const [name, setName] = useState('')
-  // const [foto, setFoto] = useState('')
-  // const { token } = useSelector((state) => state.users);
-	// const url = `${process.env.REACT_APP_API}/customer`;
-
-  
-  // useEffect(() => {
-	// 	axios
-	// 		.get(url, {
-	// 			headers: {
-	// 				token: token,
-	// 			},
-	// 		})
-	// 		.then((res) => {
-  //       setName(res.data.result[0].name);
-	// 			setFoto(res.data.result[0].foto);
-	// 		});
-	// }, [url, token]);
-
-  // console.log(name)
-  // console.log(foto)
+  const { data } = useSelector((state) => state.users)
 
         return (
             <aside className="layout">
                 <div className="d-flex p-5">
-                    <img className="rounded-circle asideseller-width" src="" alt="" />
+                    <img className="rounded-circle asideseller-width" src={data.data.result[0].foto} alt="" />
                     <div className="pt-4" id="asideseller-name">
-                    <h5 className="fw-bold"></h5>
+                    <h5 className="fw-bold">{data.data.result[0].name}</h5>
                     <i class="bi bi-pencil-fill">Ubah profile</i>
                     </div>
                 </div>

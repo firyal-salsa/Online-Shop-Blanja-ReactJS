@@ -4,6 +4,7 @@ import { useSelector } from "react-redux"
 import withAuth from "../../utils/withAuth"
 import axios from "axios"
 import Header from "../../components/header_bag";
+import Nav from "../../components/navbaricons"
 // import FormData from 'form-data'
 
 function Bag() {
@@ -36,6 +37,11 @@ useEffect(() => {
     return (
       <body className="bag-body">
         <Header />
+        <div className="hidden">
+          <Nav
+            
+          />
+        </div>
         <div id="main" className="container layout pt-5">
           <main className="row">
             <h3 id="bag-title">My Bag</h3>

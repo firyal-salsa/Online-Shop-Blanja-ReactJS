@@ -24,6 +24,7 @@ function ProfileSeller() {
 
     const history = useHistory()
     const { token } = useSelector((state) => state.users)
+    
     const Form = new FormData()
 
     const { getRootProps, getInputProps, open, acceptedFiles } = useDropzone({
@@ -52,6 +53,7 @@ function ProfileSeller() {
         })
             .then((res) => {
                 console.log(res.data)
+                alert('butuh waktu beberapa saat untuk mengubah data')
                 history.push("/profileseller")
             })
             .catch((err) => {

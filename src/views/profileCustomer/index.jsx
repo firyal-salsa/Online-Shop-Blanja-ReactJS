@@ -52,6 +52,7 @@ function ProfileCustomer() {
             .then((res) => {
                 console.log(res.data)
                 history.push("/profilecustomer")
+                alert('butuh waktu beberapa saat untuk mengubah data')
             })
             .catch((err) => {
                 console.log(err.response)

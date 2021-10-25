@@ -8,30 +8,29 @@ import SignUp from "./views/signup"
 import ProfileSeller from "./views/profileSeller"
 import ProfileCustomer from "./views/profileCustomer"
 import ShippingAddress from "./views/shippingaddress"
-import PrivateRoute from "./router.auth"
 import { useSelector } from 'react-redux';
 
 function Routers() {
     const { isAuth } = useSelector((state) => state.users)
-    const { role } = useSelector((state) => state.users)
+    console.log(isAuth)
     return (
         <BrowserRouter>
             <Switch>
                 <Route exact path="/shippingaddress">
                     {isAuth ? <ShippingAddress /> : <Redirect to="/login" />}
                 </Route> 
-                <PrivateRoute exact path="/profilecustomer">
+                <Route exact path="/profilecustomer">
                     {isAuth ? <ProfileCustomer /> : <Redirect to="/login" />}
-                </PrivateRoute>
-                <PrivateRoute exact path="/profileseller">
+                </Route>
+                <Route exact path="/profileseller">
                     {isAuth ? <ProfileSeller /> : <Redirect to="/login" />}
-                </PrivateRoute>
+                </Route>
                 <Route path="/inventory">
                     {isAuth ? <Inventory /> : <Redirect to="/login" />}
                 </Route>
-                <PrivateRoute path="/bag">
+                <Route path="/bag">
                     {isAuth ? <Bag /> : <Redirect to="/login" />}
-                </PrivateRoute>
+                </Route>
                 <Route path="/products/:produk_nama" component={Products} />
                 <Route path="/signup" component={SignUp} />
                 <Route path="/login" component={Login} />

@@ -16,7 +16,9 @@ function Home() {
   const [filteredData, setFilteredData] = useState(allData);
   const history = useHistory();
   const { isAuth } = useSelector((state) => state.users)
+
   const { register, handleSubmit} = useForm();
+
 
   const onSubmit = data => { 
     return console.log(data.Title)
