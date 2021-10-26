@@ -9,9 +9,9 @@ function AsideSeller() {
         return (
             <aside className="layout">
                 <div className="d-flex p-5">
-                    <img className="rounded-circle asideseller-width" src={data.data.result[0].foto} alt="" />
+                    <img className="rounded-circle asideseller-width" src={data.data?.result[0].foto} alt="" />
                     <div className="pt-4" id="asideseller-name">
-                    <h5 className="fw-bold">{data.data.result[0].name}</h5>
+                    <h5 className="fw-bold">{data.data?.result[0].name}</h5>
                     <i class="bi bi-pencil-fill">Ubah profile</i>
                     </div>
                 </div>

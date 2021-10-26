@@ -4,6 +4,7 @@ import Logo from "../../components/logo";
 import Navbar from "../../components/navbaricons";
 import axios from "axios";
 import { Link } from "react-router-dom";
+// import Category from "../../components/productCategory"
 import Button from "../../components/addBag"
 import "bootstrap-icons/font/bootstrap-icons.css";
 
@@ -317,18 +318,11 @@ class Products extends Component {
             <section>
               <h3 className="fw-bold">You can also like this</h3>
               <p className="text-secondary">You’ve never seen it before!</p>
-              <section className="row">
-                {/* {this.state.prods.map((res) => {
-                            return (
-                              <Cards 
-                              produk_nama={res.produk_nama}
-                              produk_harga={res.produk_harga}
-                              produk_foto={res.produk_foto}
-                              produk_terjual={res.produk_terjual}
-                              produk_toko = {res.produk_toko}/>
-                            )
-                          })} */}
-              </section>
+              {/* <section className="row">
+                <Category
+                  category = {this.state.prods.categories.kategori_nama}
+                />
+              </section> */}
             </section>
           </main>
         </div>

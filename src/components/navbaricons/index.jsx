@@ -1,13 +1,13 @@
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
 import { useSelector, useDispatch } from "react-redux"
 import "./style/style.scoped.css"
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { Link } from 'react-router-dom';
 import actionsUsers from '../../redux/actions/users'
+import axios from "axios"
 
 
-function NavbarIcons(props) {
-    const user = useSelector((state) => state.users)
+function NavbarIcons() {
 
     const [dropdown, setDropdown] = useState(false);
     const toggleOpen = () => setDropdown(!dropdown);
@@ -22,25 +22,43 @@ function NavbarIcons(props) {
 
     const { data } = useSelector((state) => state.users)
     const { isAuth } = useSelector((state) => state.users)
+    const { token } = useSelector((state) => state.users)
     const seller = data.data?.result[0]?.hasOwnProperty('store_name')
-
-    
+    const sl = isAuth && seller ? "/profileseller" : "/profilecustomer"
+    const [jumlah, setJumlah] = useState([])
 
     const logout = () => {
         dispatch(actionsUsers.AuthClear())
       };
     
-    const sl = isAuth && seller ? "/profileseller" : "/profilecustomer"
+      useEffect(() => {
+        axios({
+          method: "GET",
+          url: `${process.env.REACT_APP_API}/bag`,
+          headers: {
+              tokenauth: token,
+          },
+      })
+          .then((res) => {
+              setJumlah(res.data.result.length)
+          })
+          .catch((err) => {
+              console.log(err.response)
+          })
+      
+          // eslint-disable-next-line react-hooks/exhaustive-deps
+      },[])
 
     return (
         <div id="icons" className="d-flex mx-5 ps-5">
+            {isAuth && !seller ?
             <Link to="/bag" className="text-secondary m-3 p-2">
                 <i className="bi-cart" />
                 <span className="badge rounded-pill bg-danger">
-                    {props.jumlah}
+                    {jumlah}
                 <span className="visually-hidden">bag</span>
                 </span>
-            </Link>
+            </Link> : <p></p>}
             <Link className="text-secondary m-3 p-2" onClick={toggleOpenNotif}>
                 <i className="bi-bell" />
                     <div className={`dropdown-menu ${dropdownNotif ? 'show' : ''}`} aria-labelledby="dropdownMenuButton">
@@ -57,7 +75,7 @@ function NavbarIcons(props) {
             </Link>
              
             <span className="mt-3 pl-1 pointer" onClick={toggleOpen}>
-               {user.data.data?.result[0] && <img className="rounded-circle navbaricons-img" src={user.data.data?.result[0].foto} alt=""/>}
+               {data.data?.result[0] && <img className="rounded-circle navbaricons-img" src={data.data?.result[0].foto} alt=""/>}
                 <div className={`dropdown-menu ${dropdown ? 'show' : ''}`} aria-labelledby="dropdownMenuButton">
                     <h6>{data.data?.result[0].name}</h6>
                     <Link to={sl} className="dropdown-item">

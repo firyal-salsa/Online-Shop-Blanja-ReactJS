@@ -1,16 +1,14 @@
 import React, { useEffect, useState} from 'react'
 import Header from "../../components/headeruser"
 import Aside from "../../components/asidecustomer"
+import { useHistory } from "react-router-dom"
 import "./style/style.scoped.css"
 import withAuth from "../../utils/withAuth"
-import FormData from 'form-data'
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import axios from "axios";
-import { useForm } from 'react-hook-form';
 
 function ShippingAddress() {
-	const { token } = useSelector((state) => state.users)
-    const [addrs, setaddress] = useState({
+    const [addr, setAddr] = useState({
         address_nama:'',
         address_alamat: '',
         address_tempat: '',
@@ -18,9 +16,11 @@ function ShippingAddress() {
         address_kota: '',
         address_email : '',
         address_telepon: 0,
-
     })
-    const [filteredData, setFilteredData] = useState(addrs);
+    const [addresses, setaddress] = useState([])
+    const [filteredData, setFilteredData] = useState(addresses);
+    const history = useHistory()
+    const { token } = useSelector((state) => state.users)
     
 useEffect(() => {
     axios({
@@ -39,33 +39,43 @@ useEffect(() => {
       })
   
       // eslint-disable-next-line react-hooks/exhaustive-deps
-  })
+  },[])
 
-//   const Save = () => {
-//     Form.append("produk_nama", product.produk_nama)
-//     Form.append("produk_toko", product.produk_toko)
-//     Form.append("produk_harga", product.produk_harga)
-//     Form.append("produk_terjual", product.produk_terjual)
-//     Form.append("categories", product.categories)
-//     Form.append("produk_foto", imageFile)
+  const Save = () => {
+    const body = {
+        address_nama: addr.address_nama,
+        address_alamat: addr.address_alamat,
+        address_tempat: addr.address_tempat,
+        address_kodepos: addr.address_kodepos,
+        address_kota: addr.address_kota,
+        address_email : addr.address_email,
+        address_telepon: addr.address_telepon,
+    }
 
-//     axios({
-//         method: "POST",
-//         url: `${process.env.REACT_APP_API}/product`,
-//         headers: {
-//             "content-type": "multipart/form-data",
-//             tokenauth: token,
-//         },
-//         data: Form,
-//     })
-//         .then((res) => {
-//             console.log(res.data)
-//             history.push("/")
-//         })
-//         .catch((err) => {
-//             console.log(err)
-//         })
-// }
+    axios({
+        method: "POST",
+        url: `${process.env.REACT_APP_API}/customer/address`,
+        headers: {
+            "content-type": "application/json",
+            tokenauth: token,
+        },
+        data: body,
+    })
+        .then((res) => {
+            console.log(res)
+            window.location.reload()
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+}
+
+
+const Change = (e) => {
+    const newdata = { ...addr }
+    newdata[e.target.name] = e.target.value
+    setAddr(newdata)
+}
 
     return (
         <div>
@@ -81,19 +91,21 @@ useEffect(() => {
                         <p>Add new address</p>
                     </div>
                     <br />
-                    <div className="card border-primary mb-3">
                     {filteredData.map((value, index) => {
-                return (
-                    <div className="card-body layout-address">
-                            <h5 className="card-title">{value.address_nama}</h5>
-                            <p className="card-text">
-                            {value.address_alamat}
-                            </p>
+                    return (
+                    <div className="card border-primary mb-3">
+                        <div className="card-body layout-address">
+                                <h5 className="card-title">{value.address_nama}</h5>
+                                <p className="card-text">
+                                {value.address_alamat}
+                                </p>
+                                <p className="card-text">
+                                {value.address_telepon}
+                                </p>
+                        </div>
                     </div>
-                      );
-                    })}
-                    </div>
-
+                            );
+                        })}
                         <div
                             className="modal fade"
                             id="exampleModal"
@@ -114,29 +126,25 @@ useEffect(() => {
                                     aria-label="Close"
                                 />
                                 </div>
-                                {/* <form onSubmit={handleSubmit(onSubmitForm)}>
                                 <div className="modal-body">
                                         <div className="mb-3">
                                             <label className="form-label">
                                             Save address as (ex : home address, office address)
                                             </label>
-                                            <input type="text" className="form-control" defaultValue={user[0].address_tempat}
-									{...address('address_tempat')} name="address_tempat" placeholder="Rumah"/>
+                                            <input type="text" className="form-control" onChange={Change} name="address_tempat" placeholder="Rumah"/>
                                         </div>
                                         <div className="d-flex">
                                         <div className="mb-3 pe-3">
                                             <label className="form-label">
                                             Recipient's name
                                             </label>
-                                            <input type="text" defaultValue={user[0].address_nama}
-									{...address('address_nama')} name="address_nama" className="form-control" id=""/>
+                                            <input type="text" onChange={Change} name="address_nama" className="form-control" id=""/>
                                         </div>
                                         <div className="mb-3">
                                             <label className="form-label">
                                             Recipient's telephone number
                                             </label>
-                                            <input type="number" defaultValue={user[0].address_telephone}
-									{...address('address_telephone')} name="address_telepon" className="form-control" id=""/>
+                                            <input type="number" onChange={Change} name="address_telepon" className="form-control" id=""/>
                                         </div>
                                         </div>
                                         <div className="d-flex">
@@ -144,15 +152,13 @@ useEffect(() => {
                                             <label className="form-label">
                                             Address
                                             </label>
-                                            <input type="text" defaultValue={user[0].address_alamat}
-									{...address('address_alamat')} name="address_alamat" className="form-control" id=""/>
+                                            <input type="text" onChange={Change} name="address_alamat" className="form-control" id=""/>
                                         </div>
                                         <div className="mb-3">
                                             <label className="form-label">
                                             Postal code
                                             </label>
-                                            <input type="number" defaultValue={user[0].address_kodepos}
-									{...address('address_kodepos')} name="address_kodepos" className="form-control" id=""/>
+                                            <input type="number" onChange={Change} name="address_kodepos" className="form-control" id=""/>
                                         </div>
                                         </div>
                                         <div className="d-flex">
@@ -160,15 +166,13 @@ useEffect(() => {
                                             <label className="form-label">
                                             City or Subdistrict
                                             </label>
-                                            <input type="text" name="address_kota" defaultValue={user[0].address_kota}
-									{...address('address_kota')} className="form-control" id=""/>
+                                            <input type="text" name="address_kota" onChange={Change} className="form-control" id=""/>
                                         </div>
                                         <div className="mb-3">
                                             <label className="form-label">
                                             Email
                                             </label>
-                                            <input type="email" name="address_email" defaultValue={user[0].address_email}
-									{...address('address_email')} className="form-control" id=""/>
+                                            <input type="email" name="address_email" onChange={Change} className="form-control" id=""/>
                                         </div>
                                         </div>
                                 </div>
@@ -180,11 +184,10 @@ useEffect(() => {
                                 >
                                     Cancel
                                 </button>
-                                <button type="submit"  className="btn btn-primary">
+                                <button type="submit" onClick={Save}  className="btn btn-primary">
                                     Save changes
                                 </button>
                                 </div>
-                                </form> */}
                             </div>
                             </div>
                         </div>

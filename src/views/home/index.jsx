@@ -8,7 +8,6 @@ import NavbarAuth from "../../components/navbaricons";
 import CarouselNews from "../../components/carouselnews";
 import CarouselCategory from "../../components/carouselcategory";
 import { useHistory } from "react-router";
-import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 
 function Home() {
@@ -16,13 +15,6 @@ function Home() {
   const [filteredData, setFilteredData] = useState(allData);
   const history = useHistory();
   const { isAuth } = useSelector((state) => state.users)
-
-  const { register, handleSubmit} = useForm();
-
-
-  const onSubmit = data => { 
-    return console.log(data.Title)
-  }
 
   
   const handleSearch = (event) => {
@@ -83,56 +75,9 @@ function Home() {
               <button
                 className="btn btn-outline-secondary rounded"
                 type="button"
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
               >
                 <i className="bi-funnel" />
               </button>
-
-              <div
-                className="modal fade"
-                id="exampleModal"
-                tabIndex={-1}
-                aria-labelledby="exampleModalLabel"
-                aria-hidden="true"
-              >
-                <div className="modal-dialog">
-                  <div className="modal-content">
-                    <div className="modal-header">
-                      <h5 className="modal-title" id="exampleModalLabel">
-                        Sort By
-                      </h5>
-                      <button
-                        type="button"
-                        className="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                      />
-                    </div>
-                  <div className="modal-body">
-                  <form onSubmit={handleSubmit(onSubmit)}>
-                    <select {...register("Title", { required: true })}>
-                      <option value="nameofproduct">Nama Produk</option>
-                      <option value="newest">Terbaru</option>
-                      <option value="price">Harga</option>
-                    </select>
-                    <div className="modal-footer">
-                      <button
-                        type="button"
-                        className="btn btn-secondary"
-                        data-bs-dismiss="modal"
-                      >
-                        Close
-                      </button>
-                      <button type="submit" className="btn btn-primary">
-                        Save changes
-                      </button>
-                    </div>
-                  </form>
-                  </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>

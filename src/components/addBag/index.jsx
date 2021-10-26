@@ -40,7 +40,7 @@ function AddBag(props) {
             })
     }
     
-    useEffect(() => {
+    useEffect((bags) => {
         setBag({
             ...bags,
             bag_produk_id: props.produk_id

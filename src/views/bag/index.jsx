@@ -4,46 +4,63 @@ import { useSelector } from "react-redux"
 import withAuth from "../../utils/withAuth"
 import axios from "axios"
 import Header from "../../components/header_bag";
-import Nav from "../../components/navbaricons"
-// import FormData from 'form-data'
 
 function Bag() {
   const [bag, setbag] = useState([])
   const { token } = useSelector((state) => state.users)
   const [filteredData, setFilteredData] = useState(bag);
-  const [jumlah, setJumlah] = useState([])
-  // const Form = new FormData()
+
+        useEffect(() => {
+          axios({
+            method: "GET",
+            url: `${process.env.REACT_APP_API}/bag`,
+            headers: {
+                tokenauth: token,
+            },
+        })
+            .then((res) => {
+              setbag(res.data.result)
+              setFilteredData(res.data.result);
+            })
+            .catch((err) => {
+                console.log(err.response)
+            })
+        
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+        },[])
 
 
-useEffect(() => {
+const Delete = () => {
+  const body = {
+      products : bag.bag_produk_id,
+      bag_jumlah : bag.bag_jumlah
+  }
+
   axios({
-    method: "GET",
-    url: `${process.env.REACT_APP_API}/bag`,
-    headers: {
-        tokenauth: token,
-    },
-})
-    .then((res) => {
-        setbag(res.data.result)
-        setFilteredData(res.data.result);
-        setJumlah(res.data.result.length)
-        console.log(res.data.result.length)
-    })
-    .catch((err) => {
-        console.log(err.response)
-    })
+      method: "DELETE",
+      url: `${process.env.REACT_APP_API}/bag/rem/`,
+      headers: {
+          "content-type": "application/json",
+          tokenauth: token,
+      },
+      data: body,
+  })
+      .then((res) => {
+          console.log(res)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+}
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-},[])
+let totalPrice = bag.reduce(function (accumulator, item) {
+  return accumulator + item.products.produk_harga * item.bag_jumlah;
+}, 0);
+
 
     return (
       <body className="bag-body">
         <Header />
-        <div className="hidden">
-          <Nav
-            jumlah = {jumlah}
-          />
-        </div>
         <div id="main" className="container layout pt-5">
           <main className="row">
             <h3 id="bag-title">My Bag</h3>
@@ -59,7 +76,7 @@ useEffect(() => {
                       Total price
                     </p>
                     <p id="total" className="card-text font-weight-bold">
-                      Rp. 154000
+                      Rp. {totalPrice}
                     </p>
                   </div>
                   <div className="d-grid gap-2">
@@ -74,12 +91,15 @@ useEffect(() => {
               <div className="d-flex justify-content-between px-3">
                 <div>
                   <span className="d-flex">
-                    <input className="m-1 selectallitems-red" type="checkbox" />
+                    <input
+                    className="m-1 selectallitems-red"
+                    type="checkbox"
+                    />
                     <p className>Select all items</p>
                     <p className="text-secondary">(2 items selected)</p>
                   </span>
                 </div>
-                <p className=" d-flex selectallitems-red">Delete</p>
+                <p className="d-flex selectallitems-red" onClick={Delete}>Delete</p>
               </div>
             </div>
             <br />
@@ -87,7 +107,10 @@ useEffect(() => {
                 return (
             <div className="card row w-75 m-1 p-2 h-75">
               <div className="d-flex justify-content-between px-4 d-flex align-items-center">
-                <input className="listbag-red" type="checkbox" />
+                <input
+                className="listbag-red"
+                type="checkbox"
+                />
                 <div className="d-flex justify-content-start">
                   <img
                     className="card-img w-25 p-3"
@@ -107,7 +130,7 @@ useEffect(() => {
                   </span>
                 </div>
                 <span id="number">
-                  <input type="number" min="1" className="w-50" />
+                  <input type="number" min="1" onChange={value.bag_jumlah} className="w-50" />
                 </span>
                 <p id="number" className="card-text fw-bold">
                 Rp.{value.products.produk_harga}

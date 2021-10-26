@@ -19,19 +19,19 @@ function Routers() {
         <BrowserRouter>
             <Switch>
                 <Route exact path="/shippingaddress">
-                    {isAuth && seller ? <ShippingAddress /> : <Redirect to="/login" />}
+                    {isAuth && !seller ? <ShippingAddress /> : <Redirect to="/" />}
                 </Route> 
                 <Route exact path="/profilecustomer">
-                    {isAuth !== seller ? <ProfileCustomer /> : <Redirect to="/login" />}
+                    {isAuth && !seller ? <ProfileCustomer /> : <Redirect to="/" />}
                 </Route>
+                <Route exact path="/bag">
+                    {isAuth && !seller ? <Bag /> : <Redirect to="/" />}
+                </Route> 
                 <Route exact path="/profileseller">
-                    {isAuth && seller ? <ProfileSeller /> : <Redirect to="/login" />}
+                    {isAuth && seller ? <ProfileSeller /> : <Redirect to="/" />}
                 </Route>
                 <Route path="/inventory">
-                    {isAuth && seller ? <Inventory /> : <Redirect to="/login" />}
-                </Route>
-                <Route path="/bag">
-                    {isAuth !== seller? <Bag /> : <Redirect to="/login" />}
+                    {isAuth && seller ? <Inventory /> : <Redirect to="/" />}
                 </Route>
                 <Route path="/products/:produk_nama" component={Products} />
                 <Route path="/signup">
