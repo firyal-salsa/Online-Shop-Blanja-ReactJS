@@ -137,7 +137,7 @@ function Home() {
           </div>
         </div>
         <div id="header-navbar-home">
-          {isAuth? <NavbarAuth /> : <Navbar />}
+          {!isAuth ? <Navbar /> : <NavbarAuth />}
         </div>
       </nav>
       <div className="container pt-5 mx-5">

@@ -2,7 +2,6 @@ import React, { useEffect, useState} from "react"
 import { useHistory } from "react-router-dom"
 import { useSelector } from "react-redux"
 import withAuth from "../../utils/withAuth"
-import FormData from 'form-data'
 import "./style.scoped.css"
 import axios from "axios"
 
@@ -15,19 +14,21 @@ function AddBag(props) {
 
     const history = useHistory()
     const { token } = useSelector((state) => state.users)
-    const Form = new FormData()
 
     const Save = () => {
-        Form.append("bag_produk_id", bags.bag_produk_id)
-        Form.append("bag_jumlah", bags.bag_jumlah)
+        const body = {
+            products : bags.bag_produk_id,
+            bag_jumlah : bags.bag_jumlah
+        }
+
         axios({
             method: "POST",
             url: `${process.env.REACT_APP_API}/bag`,
             headers: {
-                "content-type": "multipart/form-data",
+                "content-type": "application/json",
                 tokenauth: token,
             },
-            data: Form,
+            data: body,
         })
             .then((res) => {
                 history.push("/bag")
@@ -35,13 +36,21 @@ function AddBag(props) {
             .catch((err) => {
                 console.log(bags)
             console.log(err)
-            //    history.push("/login")
+            history.push("/login")
             })
     }
     
-    const Change = (el) => {
+    useEffect(() => {
+        setBag({
+            ...bags,
+            bag_produk_id: props.produk_id
+
+        })
+    },[props.produk_id])
+
+    const Change = (e) => {
         const newdata = { ...bags }
-        newdata[el.target.name] = el.target.value
+        newdata[e.target.name] = e.target.value
         setBag(newdata)
     }
 

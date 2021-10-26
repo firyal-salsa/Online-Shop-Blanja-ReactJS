@@ -1,9 +1,9 @@
-import React, { useEffect, useState} from "react"
-import { useSelector } from "react-redux"
-import axios from "axios"
+import React, {useState} from "react"
+import { useSelector, useDispatch } from "react-redux"
 import "./style/style.scoped.css"
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { Link } from 'react-router-dom';
+import actionsUsers from '../../redux/actions/users'
 
 
 function NavbarIcons(props) {
@@ -18,14 +18,16 @@ function NavbarIcons(props) {
     const [dropdownChat, setDropdownChat] = useState(false);
     const toggleOpenChat = () => setDropdownChat(!dropdownChat);
 
+    const dispatch = useDispatch()
+
     const { data } = useSelector((state) => state.users)
     const { isAuth } = useSelector((state) => state.users)
-    const seller = data.data.result[0].hasOwnProperty('storename')
+    const seller = data.data?.result[0]?.hasOwnProperty('store_name')
 
-    const cssl = data.data.result
+    
 
     const logout = () => {
-        cssl.splice(0, cssl.length)
+        dispatch(actionsUsers.AuthClear())
       };
     
     const sl = isAuth && seller ? "/profileseller" : "/profilecustomer"
@@ -35,7 +37,7 @@ function NavbarIcons(props) {
             <Link to="/bag" className="text-secondary m-3 p-2">
                 <i className="bi-cart" />
                 <span className="badge rounded-pill bg-danger">
-                
+                    {props.jumlah}
                 <span className="visually-hidden">bag</span>
                 </span>
             </Link>
@@ -55,9 +57,9 @@ function NavbarIcons(props) {
             </Link>
              
             <span className="mt-3 pl-1 pointer" onClick={toggleOpen}>
-                <img className="rounded-circle navbaricons-img" src={user.data.data.result[0].foto} alt=""/>
+               {user.data.data?.result[0] && <img className="rounded-circle navbaricons-img" src={user.data.data?.result[0].foto} alt=""/>}
                 <div className={`dropdown-menu ${dropdown ? 'show' : ''}`} aria-labelledby="dropdownMenuButton">
-                    <h6>{data.data.result[0].name}</h6>
+                    <h6>{data.data?.result[0].name}</h6>
                     <Link to={sl} className="dropdown-item">
                         Edit Profile              
                     </Link>

@@ -13,7 +13,7 @@ import { useSelector } from 'react-redux';
 function Routers() {
     const { isAuth } = useSelector((state) => state.users)
     const { data } = useSelector((state) => state.users)
-    const seller = data.data.result[0].hasOwnProperty('store_name')
+    const seller = data.data?.result[0]?.hasOwnProperty('store_name')
 
     return (
         <BrowserRouter>
@@ -22,7 +22,7 @@ function Routers() {
                     {isAuth && seller ? <ShippingAddress /> : <Redirect to="/login" />}
                 </Route> 
                 <Route exact path="/profilecustomer">
-                    {isAuth != seller ? <ProfileCustomer /> : <Redirect to="/login" />}
+                    {isAuth !== seller ? <ProfileCustomer /> : <Redirect to="/login" />}
                 </Route>
                 <Route exact path="/profileseller">
                     {isAuth && seller ? <ProfileSeller /> : <Redirect to="/login" />}
@@ -31,7 +31,7 @@ function Routers() {
                     {isAuth && seller ? <Inventory /> : <Redirect to="/login" />}
                 </Route>
                 <Route path="/bag">
-                    {isAuth != seller? <Bag /> : <Redirect to="/login" />}
+                    {isAuth !== seller? <Bag /> : <Redirect to="/login" />}
                 </Route>
                 <Route path="/products/:produk_nama" component={Products} />
                 <Route path="/signup">

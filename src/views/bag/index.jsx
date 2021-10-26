@@ -11,7 +11,7 @@ function Bag() {
   const [bag, setbag] = useState([])
   const { token } = useSelector((state) => state.users)
   const [filteredData, setFilteredData] = useState(bag);
-  // const [jumlah, setJumlah] = useState(filteredData)
+  const [jumlah, setJumlah] = useState([])
   // const Form = new FormData()
 
 
@@ -26,20 +26,22 @@ useEffect(() => {
     .then((res) => {
         setbag(res.data.result)
         setFilteredData(res.data.result);
+        setJumlah(res.data.result.length)
+        console.log(res.data.result.length)
     })
     .catch((err) => {
         console.log(err.response)
     })
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-})
+},[])
 
     return (
       <body className="bag-body">
         <Header />
         <div className="hidden">
           <Nav
-            
+            jumlah = {jumlah}
           />
         </div>
         <div id="main" className="container layout pt-5">
