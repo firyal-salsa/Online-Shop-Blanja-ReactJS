@@ -108,8 +108,3 @@ https://olshop-blanja.netlify.app/
 
 ## BackEnd
 https://github.com/firyal-salsa/Online-Shop-Blanja-ExpressJS
-
-## DockerHub
-```
-docker pull firsabila/frontend:prod
-```
