@@ -1,7 +1,6 @@
 import React, { useEffect, useState} from 'react'
 import Header from "../../components/headeruser"
 import Aside from "../../components/asidecustomer"
-import { useHistory } from "react-router-dom"
 import "./style/style.scoped.css"
 import withAuth from "../../utils/withAuth"
 import { useSelector } from 'react-redux';
@@ -19,7 +18,6 @@ function ShippingAddress() {
     })
     const [addresses, setaddress] = useState([])
     const [filteredData, setFilteredData] = useState(addresses);
-    const history = useHistory()
     const { token } = useSelector((state) => state.users)
     
 useEffect(() => {

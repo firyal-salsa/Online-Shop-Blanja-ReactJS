@@ -9,6 +9,7 @@ function Bag() {
   const [bag, setbag] = useState([])
   const { token } = useSelector((state) => state.users)
   const [filteredData, setFilteredData] = useState(bag);
+  const [id, setId] = useState(filteredData);
 
         useEffect(() => {
           axios({
@@ -29,33 +30,43 @@ function Bag() {
             // eslint-disable-next-line react-hooks/exhaustive-deps
         },[])
 
+        const handleChange =  (e) => {
+          let isChecked = e.target.checked
+          let {value} = e.target
+          let id = parseInt(value)
+          if(isChecked){
+            console.log(id)
+            setId(id)
+          }else{
+            console.log('')
+          }
+          return id
+        }
 
-const Delete = () => {
-  const body = {
-      products : bag.bag_produk_id,
-      bag_jumlah : bag.bag_jumlah
-  }
 
-  axios({
-      method: "DELETE",
-      url: `${process.env.REACT_APP_API}/bag/rem/`,
-      headers: {
-          "content-type": "application/json",
-          tokenauth: token,
-      },
-      data: body,
-  })
-      .then((res) => {
-          console.log(res)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-}
+        function Delete () {
 
-let totalPrice = bag.reduce(function (accumulator, item) {
-  return accumulator + item.products.produk_harga * item.bag_jumlah;
-}, 0);
+          axios({
+              method: "DELETE",
+              url: `${process.env.REACT_APP_API}/bag/rem/${id}`,
+              headers: {
+                  "content-type": "application/json",
+                  tokenauth: token,
+              },
+          })
+              .then((res) => {
+                  console.log(res)
+                  window.location.reload()
+              })
+              .catch((err) => {
+              console.log(err)
+              })
+      }
+        
+
+        let totalPrice = bag.reduce(function (accumulator, item) {
+          return accumulator + item.products.produk_harga ;
+        }, 0);
 
 
     return (
@@ -107,7 +118,10 @@ let totalPrice = bag.reduce(function (accumulator, item) {
                 return (
             <div className="card row w-75 m-1 p-2 h-75">
               <div className="d-flex justify-content-between px-4 d-flex align-items-center">
-                <input
+                <input 
+                id={value.bag_id}
+                value={value.bag_id}
+                onChange={e => handleChange(e)}
                 className="listbag-red"
                 type="checkbox"
                 />

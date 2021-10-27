@@ -34,12 +34,8 @@ function Routers() {
                     {isAuth && seller ? <Inventory /> : <Redirect to="/" />}
                 </Route>
                 <Route path="/products/:produk_nama" component={Products} />
-                <Route path="/signup">
-                    {!isAuth? <SignUp /> : <Redirect to="/" />}
-                </Route>
-                <Route path="/login">
-                    {!isAuth? <Login /> : <Redirect to="/" />}
-                </Route>
+                <Route path="/signup" component={SignUp} />
+                <Route path="/login" component={Login} />
                 <Route path="/" component={Home} />
             </Switch>
         </BrowserRouter>

@@ -29,12 +29,6 @@ function AsideSeller() {
                         Shipping Address
                       </Link>
                     </h2>
-                    <h2 className="accordion-header" id="flush-headingThree">
-                      <Link to="/ordercustomer" className="button" type="button">
-                        <i class="bi bi-calendar p-2 rounded-circle bg-danger text-light"></i>
-                        My Order
-                      </Link>
-                    </h2>
                 </div>
                 </div>
 

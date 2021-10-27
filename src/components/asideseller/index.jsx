@@ -81,18 +81,6 @@ function AsideSeller() {
                         Order
                       </button>
                     </h2>
-                    <div
-                      id="flush-collapseThree"
-                      className="accordion-collapse collapse"
-                      aria-labelledby="flush-headingThree"
-                      data-bs-parent="#accordionFlushExample"
-                    >
-                      <div className="accordion-body">
-                      <Link className="list" to="/orderseller">My Order</Link>
-                      <br />
-                      <Link className="list" to="/orderseller">Order Cancel</Link>
-                      </div>
-                    </div>
                   </div>
                 </div>
                 </div>

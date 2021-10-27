@@ -15,7 +15,8 @@ function Home() {
   const [filteredData, setFilteredData] = useState(allData);
   const history = useHistory();
   const { isAuth } = useSelector((state) => state.users)
-
+  const { data } = useSelector((state) => state.users)
+  console.log(data)
   
   const handleSearch = (event) => {
     let value = event.target.value;
@@ -72,12 +73,6 @@ function Home() {
                   <i className="bi-search" />
                 </button>
               </span>
-              <button
-                className="btn btn-outline-secondary rounded"
-                type="button"
-              >
-                <i className="bi-funnel" />
-              </button>
             </div>
           </div>
         </div>
