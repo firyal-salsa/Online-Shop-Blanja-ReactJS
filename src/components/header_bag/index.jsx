@@ -12,7 +12,9 @@ function Header_bag() {
         <div id="header-logo" className="header-logo-nav navbar-brand p-2 flex-grow-1">
           <Logo />
         </div>
+        <div className="hidden">
         <Search />
+        </div>
         <NavbarIcons />
       </nav>
 

@@ -10,6 +10,7 @@ function Bag() {
   const { token } = useSelector((state) => state.users)
   const [filteredData, setFilteredData] = useState(bag);
   const [id, setId] = useState(filteredData);
+  let checkedBoxes = document.querySelectorAll('input[type=checkbox]:checked');
 
         useEffect(() => {
           axios({
@@ -29,6 +30,8 @@ function Bag() {
         
             // eslint-disable-next-line react-hooks/exhaustive-deps
         },[])
+
+        
 
         const handleChange =  (e) => {
           let isChecked = e.target.checked
@@ -62,7 +65,7 @@ function Bag() {
               console.log(err)
               })
       }
-        
+      
 
         let totalPrice = bag.reduce(function (accumulator, item) {
           return accumulator + item.products.produk_harga ;
@@ -102,12 +105,7 @@ function Bag() {
               <div className="d-flex justify-content-between px-3">
                 <div>
                   <span className="d-flex">
-                    <input
-                    className="m-1 selectallitems-red"
-                    type="checkbox"
-                    />
-                    <p className>Select all items</p>
-                    <p className="text-secondary">(2 items selected)</p>
+                    <p className="text-secondary">({checkedBoxes.length} items selected)</p>
                   </span>
                 </div>
                 <p className="d-flex selectallitems-red" onClick={Delete}>Delete</p>
@@ -143,9 +141,6 @@ function Bag() {
                     </p>
                   </span>
                 </div>
-                <span id="number">
-                  <input type="number" min="1" onChange={value.bag_jumlah} className="w-50" />
-                </span>
                 <p id="number" className="card-text fw-bold">
                 Rp.{value.products.produk_harga}
                 </p>
