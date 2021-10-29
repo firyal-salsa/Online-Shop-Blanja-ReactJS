@@ -65,12 +65,11 @@
     </th>
   </tr colspan="3">
     <th>
-    <img src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1635131359/Blanja/Add_a_heading_bqofuh.png" width="300px" alt="Arkademylogo.svg" />
+    <img src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1635376779/Blanja/ArsitekturBlanja_qwxcpm.png" width="300px" alt="Arkademylogo.svg" />
      <th>
   <tr>
   </tr>
 </table>
-
 
 ## Features
 Users can pick as a customer or seller. Customer can access home page (sort by name, sort by newest, sort by price, search products)
