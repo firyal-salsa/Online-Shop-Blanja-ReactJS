@@ -108,4 +108,4 @@ npm start
 https://olshop-blanja.netlify.app/
 
 ## BackEnd
-https://github.com/firyal-salsa/Online-Shop-Blanja-ExpressJS
+https://app.blanja-shop.online/
