@@ -90,7 +90,7 @@ Seller can add products, edit profile, and logout.
 <img src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1634225443/tech%20stack/docker-icon_hamwmv.svg" width="50px" height="50px">
 <img src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1634225440/tech%20stack/jenkins_xhlzk0.svg" width="50px" height="50px">
 <img src="https://res.cloudinary.com/dvehyvk3d/image/upload/v1635376779/Blanja/ArsitekturBlanja_qwxcpm.png" width="50px" height="50px">
-</div>.
+</div>
 
 ## Executing
 
