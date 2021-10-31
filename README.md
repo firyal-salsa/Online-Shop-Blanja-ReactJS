@@ -104,7 +104,7 @@ npm start
 ```
 
 ## Demo
-https://olshop-blanja.netlify.app/
+https://app.blanja-shop.online/
 
 ## BackEnd
-https://app.blanja-shop.online/
+https://github.com/firyal-salsa/Online-Shop-Blanja-ExpressJS
