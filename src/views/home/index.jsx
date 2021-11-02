@@ -9,15 +9,70 @@ import CarouselNews from "../../components/carouselnews";
 import CarouselCategory from "../../components/carouselcategory";
 import { useHistory } from "react-router";
 import { useSelector } from 'react-redux';
+import Select from "react-select";
+
+const options = [
+  { label: 'Harga',value: `${process.env.REACT_APP_API}/product/produk_harga` },
+  { label: 'Nama pakaian',value: `${process.env.REACT_APP_API}/product/produk_nama` },
+  { label: 'Terbaru',value: `${process.env.REACT_APP_API}/product` }
+];
 
 function Home() {
   const [allData, setAllData] = useState([]);
+  const [category, setcategory] = useState([]);
+  const [filteredCategory, setFilteredCategory] = useState(null);
   const [filteredData, setFilteredData] = useState(allData);
   const history = useHistory();
   const { isAuth } = useSelector((state) => state.users)
-  const { data } = useSelector((state) => state.users)
-  console.log(data)
-  
+ 
+  const initialFormState = `${process.env.REACT_APP_API}/product`
+
+  const [url, seturl] = useState(initialFormState);
+
+  const updateForm = (value, kategori_id) => {
+    seturl({ ...url, mySelectKey: value });
+    filteredData.filter(filteredData => filteredData.produk_kategori_id === filteredCategory)
+  };
+
+
+  useEffect(() => {
+    axios(
+      url.mySelectKey || initialFormState
+      )
+      .then((response) => {
+        setAllData(response.data.result);
+        setFilteredData(response.data.result);
+        const arr = response.data.result
+        const pp = arr.filter(arr => arr.produk_kategori_id === 1);
+        console.log(pp)
+
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [url.mySelectKey, initialFormState]);
+
+  useEffect(() => {
+    axios(
+      `${process.env.REACT_APP_API}/category`
+      )
+      .then((response) => {
+        setcategory(response.data.result)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  const handleNextStep = (e) =>{
+    console.log(e.target.value)
+    setFilteredCategory(e.target.value)
+  }
+
+  const handleDetail = (produk_nama) => {
+    history.push(`/products/${produk_nama}`);
+  }
+
   const handleSearch = (event) => {
     let value = event.target.value;
     let result = [];
@@ -26,25 +81,6 @@ function Home() {
     });
     setFilteredData(result);
   };
-
-  
-  useEffect(() => {
-    axios(
-           `${process.env.REACT_APP_API}/product`
-      )
-      .then((response) => {
-        console.log(response.data.result);
-        setAllData(response.data.result);
-        setFilteredData(response.data.result);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
-  const handleDetail = (produk_nama) => {
-    history.push(`/products/${produk_nama}`);
-  }
   
 
   return (
@@ -73,6 +109,70 @@ function Home() {
                   <i className="bi-search" />
                 </button>
               </span>
+              <button
+                className="btn btn-outline-secondary rounded"
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+              >
+                <i className="bi-funnel" />
+              </button>
+
+              <div
+                className="modal fade"
+                id="exampleModal"
+                tabIndex={-1}
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div className="modal-dialog">
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <h5 className="modal-title" id="exampleModalLabel">
+                        Setting
+                      </h5>
+                      <button
+                        type="button"
+                        className="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      />
+                    </div>
+                  <div className="modal-body">
+                  <form>
+                    Sort by :
+                  <Select
+                    name={({ label }) => label}
+                    value={options.filter(({ value }) => value === url.mySelectKey)}
+                    getOptionLabel={({ label }) => label}
+                    getOptionValue={({ value }) => value}
+                    onChange={({ value }) => updateForm(value)}
+                    options={options}
+                  />
+                  <br /> <br /> <br /> <br /> <br /> <br />
+                  Filter by :
+                  <br />
+                  {category.map((value, index) => {
+                    return (
+                      <button type="button" className="btn btn-secondary me- mb-2" value={value.kategori_id} onClick={handleNextStep} >
+                        {value.kategori_nama}
+                      </button>
+                    );
+                  })}
+                  </form>
+                  </div>
+                  <div className="modal-footer">
+                      <button
+                        type="button"
+                        className="btn btn-primary"
+                        data-bs-dismiss="modal"
+                      >
+                        Done
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
