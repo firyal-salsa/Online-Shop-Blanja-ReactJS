@@ -50,6 +50,8 @@ function NavbarIcons() {
       },[])
 
     return (
+        <div>
+        {isAuth ?
         <div id="icons" className="d-flex mx-5 ps-5">
             {isAuth && !seller ?
             <Link to="/bag" className="text-secondary m-3 p-2">
@@ -86,6 +88,8 @@ function NavbarIcons() {
                     </Link>
                 </div>
             </span>
+        </div> : null
+        }
         </div>
     )
 }
