@@ -17,12 +17,8 @@
 @media screen and (max-width: 408px) {
     #cart-button{
         position: relative;
-        margin-top: 11vw;
-        margin-right: 1vw;
-        width:100%;
+        margin-top: 17vw;
+        margin-left: 20vw;
         padding-bottom:5vw;
-    }
-    .search-icon{
-        background-color:green;
     }
  }
