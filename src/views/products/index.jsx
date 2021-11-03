@@ -1,35 +1,33 @@
-import React, { Component } from "react";
+import React, { useEffect, useState} from "react";
 import "./style/style.scoped.css";
 import Logo from "../../components/logo";
 import Navbar from "../../components/navbaricons";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Button from "../../components/addBag"
+import { useSelector } from "react-redux"
 import "bootstrap-icons/font/bootstrap-icons.css";
 
-class Products extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      prods: {
-        produk_id: "",
-        produk_foto: "",
-        produk_harga: "",
-        produk_kategori_id: "",
-        produk_nama: "",
-        produk_terjual: "",
-        produk_toko: "",
-        categories: "",
-      },
-    };
-  }
+function Products(props){
+  const [prods, setProds] = useState({
+    produk_id: "",
+    produk_foto: "",
+    produk_harga: "",
+    produk_kategori_id: "",
+    produk_nama: "",
+    produk_terjual: "",
+    produk_toko: "",
+    categories: "",
+  })
 
-  getProducts = () => {
+  const { isAuth } = useSelector((state) => state.users)
+
+  useEffect(() => {
     axios({
       method: "GET",
       url: `${process.env.REACT_APP_API}/product/produk_harga`,
       params: {
-        produk_nama: this.props.match.params.produk_nama,
+        produk_nama: props.match.params.produk_nama,
       },
     })
       .then((res) => {
@@ -38,8 +36,7 @@ class Products extends Component {
           ({ produk_nama }) => produk_nama === name
         );
         let prods = process;
-        this.setState({
-          prods: {
+        setProds({
             produk_id: prods.produk_id,
             produk_nama: prods.produk_nama,
             produk_harga: prods.produk_harga,
@@ -47,44 +44,13 @@ class Products extends Component {
             produk_foto: prods.produk_foto,
             produk_toko: prods.produk_toko,
             categories: prods.categories,
-          },
         });
       })
       .catch((err) => {
         console.log(err);
       });
-  };
+  }, [props.match.params.produk_nama])
 
-  getAllProducts = () => {
-    axios({
-      method: "GET",
-      url: `${process.env.REACT_APP_API}/product/produk_harga`,
-    })
-      .then((res) => {
-        const { result } = res.data;
-        console.log(res.data);
-        this.setState({ prods: result });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  handleDetail = (produk_nama) => {
-    this.props.history.push(`/products/${produk_nama}`);
-  };
-
-  handleRemove = (produk_id) => {
-    axios
-      .delete(`${process.env.REACT_APP_API}/product/rem/${produk_id}`)
-      .then((res) => console.log(res));
-  };
-
-  componentDidMount() {
-    this.getProducts();
-  }
-
-  render() {
     return (
       <body className="product-body">
         <nav className="header-navbar d-flex justify-content-between">
@@ -106,30 +72,32 @@ class Products extends Component {
             <i className="bi bi-caret-right" />
             <Link className="link"> Category</Link>{" "}
             <i className="bi bi-caret-right" />
-            <Link className="link">{this.state.prods.categories.kategori_nama}</Link>
+            <Link className="link">{prods.categories.kategori_nama}</Link>
           </span>
           <main className="container">
             <div>
             <section className="product-about">
                     <div className="">
-                        <img className="product-photo" src={this.state.prods.produk_foto} alt="" />
+                        <img className="product-photo" src={prods.produk_foto} alt="" />
                     </div>
                     <div className="test">
-                        <h3 className="fw-bold">{this.state.prods.produk_nama}</h3>
-                        <p className="text-secondary">{this.state.prods.produk_toko}</p>
+                        <h3 className="fw-bold">{prods.produk_nama}</h3>
+                        <p className="text-secondary">{prods.produk_toko}</p>
                         <i className="bi-star-fill text-warning" />
                         <i className="bi-star-fill text-warning" />
                         <i className="bi-star-fill text-warning" />
                         <i className="bi-star-fill text-warning" />
                         <i className="bi-star-fill text-warning" />
-                        <i>{this.state.prods.produk_terjual}</i>
+                        <i>{prods.produk_terjual}</i>
                         
                         <p className="mt-4">Price</p>
-                        <h3 className="fw-bold">Rp. {this.state.prods.produk_harga}</h3>
+                        <h3 className="fw-bold">Rp. {prods.produk_harga}</h3>
                         <div className="pt-5">
+                        { isAuth?
                         <Button
-                        produk_id={this.state.prods.produk_id}
-                        />
+                          produk_id={prods.produk_id}
+                        /> : null
+                        }
                         </div>
                     </div>
                 </section>
@@ -246,6 +214,5 @@ class Products extends Component {
       </body>
     );
   }
-}
 
 export default Products;
