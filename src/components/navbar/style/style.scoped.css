@@ -1,0 +1,28 @@
+@media screen and (max-width: 853px) {
+    .btns{
+        font-size: 12px;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 853px) {
+   #cart-button{
+       position: relative;
+       margin-top: 6vw;
+       margin-right: 1vw;
+       width:100%;
+   }
+}
+
+@media screen and (max-width: 408px) {
+    #cart-button{
+        position: relative;
+        margin-top: 11vw;
+        margin-right: 1vw;
+        width:100%;
+        padding-bottom:5vw;
+    }
+    .search-icon{
+        background-color:green;
+    }
+ }
