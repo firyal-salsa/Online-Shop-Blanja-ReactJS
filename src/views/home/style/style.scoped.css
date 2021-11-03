@@ -65,26 +65,34 @@
 
 @media screen and (max-width: 408px) {
   .header-logo-nav{
-    margin-left: 7vw;
+    margin-right: 15vw;
     margin-bottom: 10vw;
   }
 
   .search-input{
-    position: absolute;
-    width:30vw;
+    width:55vw;
+    margin-top: 20vw;
     margin-right: 50vw;
   }
 
   .header-navbar{
     height: 50vw;
+    width:100%;
   }
 
   .header-search{
-    padding-top: 10vw;
-    padding-bottom:5vw;
+    padding-top: 20vw;
+    padding:0;
   }
+
   #search-border{
-    margin-top:10vw;
-    margin-right: 10vw;
+    left: 15px;
+    bottom:10vw;
+  }
+
+  .funnel{
+    height:10vw;
+    bottom: 11vw;
+    left:20px;
   }
 }
