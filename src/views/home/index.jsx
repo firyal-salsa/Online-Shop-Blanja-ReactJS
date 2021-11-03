@@ -19,8 +19,6 @@ const options = [
 
 function Home() {
   const [allData, setAllData] = useState([]);
-  const [category, setcategory] = useState([]);
-  const [filteredCategory, setFilteredCategory] = useState(null);
   const [filteredData, setFilteredData] = useState(allData);
   const history = useHistory();
   const { isAuth } = useSelector((state) => state.users)
@@ -29,9 +27,8 @@ function Home() {
 
   const [url, seturl] = useState(initialFormState);
 
-  const updateForm = (value, kategori_id) => {
+  const updateForm = value => {
     seturl({ ...url, mySelectKey: value });
-    filteredData.filter(filteredData => filteredData.produk_kategori_id === filteredCategory)
   };
 
 
@@ -52,22 +49,7 @@ function Home() {
       });
   }, [url.mySelectKey, initialFormState]);
 
-  useEffect(() => {
-    axios(
-      `${process.env.REACT_APP_API}/category`
-      )
-      .then((response) => {
-        setcategory(response.data.result)
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
 
-  const handleNextStep = (e) =>{
-    console.log(e.target.value)
-    setFilteredCategory(e.target.value)
-  }
 
   const handleDetail = (produk_nama) => {
     history.push(`/products/${produk_nama}`);
@@ -129,7 +111,7 @@ function Home() {
                   <div className="modal-content">
                     <div className="modal-header">
                       <h5 className="modal-title" id="exampleModalLabel">
-                        Setting
+                        Sort by
                       </h5>
                       <button
                         type="button"
@@ -140,7 +122,6 @@ function Home() {
                     </div>
                   <div className="modal-body">
                   <form>
-                    Sort by :
                   <Select
                     name={({ label }) => label}
                     value={options.filter(({ value }) => value === url.mySelectKey)}
@@ -149,16 +130,7 @@ function Home() {
                     onChange={({ value }) => updateForm(value)}
                     options={options}
                   />
-                  <br /> <br /> <br /> <br /> <br /> <br />
-                  Filter by :
-                  <br />
-                  {category.map((value, index) => {
-                    return (
-                      <button type="button" className="btn btn-secondary me- mb-2" value={value.kategori_id} onClick={handleNextStep} >
-                        {value.kategori_nama}
-                      </button>
-                    );
-                  })}
+                  <br /> <br /> <br /> <br /> 
                   </form>
                   </div>
                   <div className="modal-footer">
