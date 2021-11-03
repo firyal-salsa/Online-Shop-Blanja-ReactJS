@@ -18,9 +18,6 @@
 
  @media screen and (max-width: 408px) {
     #icons{
-        position: relative;
-        margin-top: 10vw;
-        width:100%;
-        padding-bottom:5vw;
+        margin-top: 15vw;
     }
  }
