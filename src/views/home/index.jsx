@@ -164,19 +164,7 @@ function Home() {
                     onChange={({ value }) => updateForm(value)}
                     options={options}
                   />
-                  <br /> <br /> <br /> <br /> <br /> <br />
-                  Filter by :
-                  <br />
-                  <button type="button" className="btn btn-secondary me-2 mb-2" value="All" onClick={handleBtns} >
-                      All
-                  </button>
-                  {category.map((value, index) => {
-                    return (
-                      <button type="button" className="btn btn-secondary me-2 mb-2" value={value.kategori_id} onClick={handleBtns} >
-                        {value.kategori_nama}
-                      </button>
-                    );
-                  })}
+                  <br /> <br /> <br /> <br />
                   </form>
                   </div>
                   <div className="modal-footer">
