@@ -19,6 +19,8 @@ const options = [
 
 function Home() {
   const [allData, setAllData] = useState([]);
+  const [category, setcategory] = useState([]);
+  const [filteredCategory, setFilteredCategory] = useState(null);
   const [filteredData, setFilteredData] = useState(allData);
   const history = useHistory();
   const { isAuth } = useSelector((state) => state.users)
@@ -27,8 +29,9 @@ function Home() {
 
   const [url, seturl] = useState(initialFormState);
 
-  const updateForm = value => {
+  const updateForm = (value, kategori_id) => {
     seturl({ ...url, mySelectKey: value });
+    filteredData.filter(filteredData => filteredData.produk_kategori_id === filteredCategory)
   };
 
 
@@ -40,16 +43,46 @@ function Home() {
         setAllData(response.data.result);
         setFilteredData(response.data.result);
         const arr = response.data.result
-        const pp = arr.filter(arr => arr.produk_kategori_id === 1);
-        console.log(pp)
-
+        arr.filter(arr => arr.produk_kategori_id === 1);
       })
       .catch((error) => {
         console.log(error);
       });
   }, [url.mySelectKey, initialFormState]);
 
+  useEffect(() => {
+    axios(
+      `${process.env.REACT_APP_API}/category`
+      )
+      .then((response) => {
+        setcategory(response.data.result)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
+
+
+  const [state, setState] = useState([])
+
+  const handleBtns = (e) => {
+    setFilteredCategory(e.target.value)
+    let word=e.target.value
+    if(word === 'All'){
+      setState(filteredData)
+    }else if(word === 5){
+      
+      const filter = filteredData.filter(item=>item.produk_kategori_id === 5);
+      console.log(filteredData.produk_kategori_id)
+      setState(filter)
+    }else{
+      console.log('salah')
+      console.log(typeof filteredData)
+      console.log(console.log(Object.values(filteredData)))
+    }
+    
+  }
 
   const handleDetail = (produk_nama) => {
     history.push(`/products/${produk_nama}`);
@@ -69,16 +102,16 @@ function Home() {
     <body className="home-body">
       <nav className="header-navbar d-flex justify-content-around">
         <div
-          id="header-logo"
           className="header-logo-nav navbar-brand p-2 flex-grow-1"
         >
           <Logo />
         </div>
-        <div id="header-search">
+        
+        <div className="header-search">
           <div id="d-flex" className="search-filter">
             <div className="input-group">
               <input
-                className="search-input p-2 rounded-pill"
+                className="search-input w-search p-2 rounded-pill"
                 placeholder="Search"
                 onChange={(event) => handleSearch(event)}
               />
@@ -92,7 +125,7 @@ function Home() {
                 </button>
               </span>
               <button
-                className="btn btn-outline-secondary rounded"
+                className="btn btn-outline-secondary rounded funnel"
                 type="button"
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal"
@@ -111,7 +144,7 @@ function Home() {
                   <div className="modal-content">
                     <div className="modal-header">
                       <h5 className="modal-title" id="exampleModalLabel">
-                        Sort by
+                        Setting
                       </h5>
                       <button
                         type="button"
@@ -122,6 +155,7 @@ function Home() {
                     </div>
                   <div className="modal-body">
                   <form>
+                    Sort by :
                   <Select
                     name={({ label }) => label}
                     value={options.filter(({ value }) => value === url.mySelectKey)}
@@ -130,7 +164,19 @@ function Home() {
                     onChange={({ value }) => updateForm(value)}
                     options={options}
                   />
-                  <br /> <br /> <br /> <br /> 
+                  <br /> <br /> <br /> <br /> <br /> <br />
+                  Filter by :
+                  <br />
+                  <button type="button" className="btn btn-secondary me-2 mb-2" value="All" onClick={handleBtns} >
+                      All
+                  </button>
+                  {category.map((value, index) => {
+                    return (
+                      <button type="button" className="btn btn-secondary me-2 mb-2" value={value.kategori_id} onClick={handleBtns} >
+                        {value.kategori_nama}
+                      </button>
+                    );
+                  })}
                   </form>
                   </div>
                   <div className="modal-footer">
@@ -160,7 +206,7 @@ function Home() {
             <h3 className="font-weight-bold">New</h3>
             <p className="text-secondary">You’ve never seen it before!</p>
             <section className="cards mx-5">
-              {filteredData.map((value, index) => {
+              {state.map((value, index) => {
                 return (
                   <Cards
                   produk_nama={value.produk_nama}
