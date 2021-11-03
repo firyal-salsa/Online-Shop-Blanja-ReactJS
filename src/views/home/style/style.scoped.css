@@ -10,3 +10,81 @@
   flex-flow: row wrap;
   position: relative;
 }
+
+
+@media screen and (max-width: 1037px) {
+  .w-search{
+    width: 30vw;
+    margin-left: 1vw;
+    margin-top: 0.5vw;
+  }
+  #search-border{
+    margin-top:0.5vw;
+  }
+  .funnel{
+    margin-right: 2vw;
+  }
+
+}
+
+
+@media screen and (max-width: 853px) {
+  .w-search{
+    width: 30vw;
+    margin-left: 1vw;
+    margin-top: 0.5vw;
+  }
+  #search-border{
+    margin-top:0.5vw;
+  }
+  .funnel{
+    margin-right: 2vw;
+  }
+}
+
+
+@media screen and (max-width: 853px) {
+  .header-logo-nav{
+    margin-left: 7vw;
+    position: absolute;
+  }
+
+  .header-navbar{
+    height: 20vw;
+  }
+
+  .header-search{
+    margin-top:12vw;
+    margin-left:5%;
+    position:absolute;
+  }
+  #search-border{
+    margin-top:0.5vw;
+  }
+}
+
+@media screen and (max-width: 408px) {
+  .header-logo-nav{
+    margin-left: 7vw;
+    margin-bottom: 10vw;
+  }
+
+  .search-input{
+    position: absolute;
+    width:30vw;
+    margin-right: 50vw;
+  }
+
+  .header-navbar{
+    height: 50vw;
+  }
+
+  .header-search{
+    padding-top: 10vw;
+    padding-bottom:5vw;
+  }
+  #search-border{
+    margin-top:10vw;
+    margin-right: 10vw;
+  }
+}
