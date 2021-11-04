@@ -22,3 +22,13 @@
         padding-bottom:5vw;
     }
  }
+
+ @media screen and (max-width: 414px) {
+    #cart-button{
+        position: relative;
+        margin-top: 11vw;
+        padding:0;
+        margin-right:15vw;
+    }
+ }
+
