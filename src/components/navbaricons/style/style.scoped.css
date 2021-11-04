@@ -21,3 +21,11 @@
         margin-top: 15vw;
     }
  }
+
+ @media screen and (max-width: 414px) {
+    #icons{
+        margin-top: 32vw;
+        padding:0;
+        right:10vw;
+    }
+ }
